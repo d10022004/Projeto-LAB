@@ -3,5 +3,4 @@ import tabuleiro as tab
 
 
 play = menu.menu()
-if play != {}:
-    tab.jogar(play)
+print (play)
