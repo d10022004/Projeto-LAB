@@ -1,3 +1,7 @@
 import jogo as menu
+import tabuleiro as tab
 
-menu.menu()
+
+play = menu.menu()
+if play != {}:
+    tab.jogar(play)
