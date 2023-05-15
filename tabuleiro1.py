@@ -38,7 +38,7 @@ for row in range(3):
         row_cells.append(cell)
     cells.append(row_cells)
 
-    tabuleiro = tk.Frame(window, bg='Black') #PARA MUDAR A COR DO FUNDO DEBAIXO DO TABULEIRO
+    tabuleiro = tk.Frame(window, bg='White') #PARA MUDAR A COR DO FUNDO DEBAIXO DO TABULEIRO
     tabuleiro.pack(fill=tk.BOTH, expand=True)
     
 window.mainloop()
