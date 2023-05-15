@@ -1,9 +1,11 @@
 import pygame
 import tkinter as tk
-
+estado_jogo = True
+jogadores = []
+jogadoresd = {}
 def menu():
+    global estado_jogo
     pygame.init()
-    dadosjogadores = {}
     imagemfundo = pygame.image.load("imagemfundo.jpeg")
     compri = imagemfundo.get_width()
     larg = imagemfundo.get_height()
@@ -27,54 +29,105 @@ def menu():
         texto_surface = pygame.font.Font(None, 40).render(texto, True, PRETO)
         texto_rect = texto_surface.get_rect(center=retangulo.center)
         janela.blit(texto_surface, texto_rect)
+        
 
-    def fechar_janela():
-        pygame.quit()
+    def novojogo():
+        def intrnome():
+            def segundoplay(entrada):
+                def fechar():
+                    jogadoresd['nome2'] = entrada.get()
+                    jogadores.append(jogadoresd)
+                    janela_nome2.destroy()
+                    global estado_jogo
+                    estado_jogo = False
+                    
 
+                jogadoresd['nome1'] = entrada.get()
 
-    estado_jogo = True
-    while estado_jogo:
+                janela_nome1.destroy()
+                janela_nome2 = tk.Tk()
+                janela_nome2.title("JOGADOR 2")
+                janela_nome2.geometry("200x100")
+                label = tk.Label(janela_nome2, text="Digite seu nome:")
+                label.pack()
+                entrada = tk.Entry(janela_nome2)
+                entrada.pack()
+                botao = tk.Button(janela_nome2, text="OK", command=fechar)
+                botao.pack()
+                label_nome = tk.Label(janela_nome2, text="")
+                label_nome.pack()
+                janela_nome2.mainloop()
+            janela_op.destroy()
+            janela_nome1 = tk.Tk()
+            janela_nome1.title("JOGADOR 1")
+            janela_nome1.geometry("200x100")
+            label = tk.Label(janela_nome1, text="Digite seu nome:")
+            label.pack()
+            entrada = tk.Entry(janela_nome1)
+            entrada.pack()
+            botao = tk.Button(janela_nome1, text="OK", command=lambda: segundoplay(entrada))
+            botao.pack()
+            label_nome = tk.Label(janela_nome1, text="")
+            label_nome.pack()
+            janela_nome1.mainloop()
+
+        def intrnomeind():
+            def fecharind(entrada):
+                jogadoresd['nome1'] = entrada.get()
+                jogadores.append(jogadoresd)
+                janela_nomeind.destroy()
+                jogadoresd['nome2'] = 'BOOT'
+                global estado_jogo
+                estado_jogo = False
+                
+            janela_nomeind = tk.Tk()
+            janela_nomeind.title("JOGADOR 1")
+            janela_nomeind.geometry("200x100")
+            label = tk.Label(janela_nomeind, text="Digite seu nome:")
+            label.pack()
+            entrada = tk.Entry(janela_nomeind)
+            entrada.pack()
+            botao = tk.Button(janela_nomeind, text="OK", command=lambda: fecharind(entrada))
+            botao.pack()
+            label_nome = tk.Label(janela_nomeind, text="")
+            label_nome.pack()
+            janela_nomeind.mainloop()
+
+        janela_op = tk.Tk()
+        janela_op.title("Introduza opção")
+        janela_op.geometry("200x100")
+        labelop1 = tk.Label(janela_op, text="Qual prefere?")
+        labelop1.pack()
+        botao1 = tk.Button(janela_op, text="1 VS 1", command=intrnome)
+        botao1.pack()
+        botao2 = tk.Button(janela_op, text="1 VS BOT", command=intrnomeind)
+        botao2.pack()
+        janela_op.mainloop()
+
+      #  return dadosjogadores
+    def carregajogo():
+        print("CARREGA JOGO")
+
+    def sair():
+        global estado_jogo
+        estado_jogo = False
+    
+    while estado_jogo == True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 estado_jogo = False
-        def novojogo():
-            def mostrar_nome():
-                dadosjogadores['nome'] = entrada.get()
-                janela_jogo.destroy()
-                print(dadosjogadores)
-                fechar_janela()
-
-            janela_jogo = tk.Tk()
-            janela_jogo.title("Introduza o nome")
-
-            label = tk.Label(janela_jogo, text="Digite seu nome:")
-            label.pack()
-            entrada = tk.Entry(janela_jogo)
-            entrada.pack()
-            botao = tk.Button(janela_jogo, text="Mostrar nome", command=mostrar_nome)
-            botao.pack()
-            label_nome = tk.Label(janela_jogo, text="")
-            label_nome.pack()
-
-            janela_jogo.mainloop()
-            return dadosjogadores
-        def carregajogo():
-            print("CARREGA JOGO")
-
-        def sair():
-            global estado_jogo
-            estado_jogo = False
-        
-        janela.blit(imagemfundo, (0, 0))
-        criar_botao("NOVO JOGO", CINZA, VERDE, (250, 180), 220, 50, novojogo)
-        criar_botao("CARREGA JOGO", CINZA, VERDE, (250, 240), 220, 50, carregajogo)
-        criar_botao("REGRAS JOGO", CINZA, VERDE, (250, 300), 220, 50, carregajogo)
-        criar_botao("SAIR", CINZA, VERDE, (250, 360), 220, 50, sair)
+           
+        if estado_jogo == True:
+            janela.blit(imagemfundo, (0, 0))
+            criar_botao("NOVO JOGO", CINZA, VERDE, (250, 180), 220, 50, novojogo)
+            criar_botao("CARREGA JOGO", CINZA, VERDE, (250, 240), 220, 50, carregajogo)
+            criar_botao("REGRAS JOGO", CINZA, VERDE, (250, 300), 220, 50, carregajogo)
+            criar_botao("SAIR", CINZA, VERDE, (250, 360), 220, 50, sair)
         pygame.display.update()
+    return jogadores
         
 
 
-menu()
 
 
 
