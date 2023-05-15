@@ -30,6 +30,7 @@ def menu():
         texto_rect = texto_surface.get_rect(center=retangulo.center)
         janela.blit(texto_surface, texto_rect)
         
+        
 
     def novojogo():
         def intrnome():
@@ -47,12 +48,12 @@ def menu():
                 janela_nome1.destroy()
                 janela_nome2 = tk.Tk()
                 janela_nome2.title("JOGADOR 2")
-                janela_nome2.geometry("200x100")
-                label = tk.Label(janela_nome2, text="Digite seu nome:")
+                janela_nome2.geometry("400x200")
+                label = tk.Label(janela_nome2, text="  Digite seu nome:  ")
                 label.pack()
                 entrada = tk.Entry(janela_nome2)
                 entrada.pack()
-                botao = tk.Button(janela_nome2, text="OK", command=fechar)
+                botao = tk.Button(janela_nome2, text="   OK   ", command=fechar)
                 botao.pack()
                 label_nome = tk.Label(janela_nome2, text="")
                 label_nome.pack()
@@ -60,8 +61,8 @@ def menu():
             janela_op.destroy()
             janela_nome1 = tk.Tk()
             janela_nome1.title("JOGADOR 1")
-            janela_nome1.geometry("200x100")
-            label = tk.Label(janela_nome1, text="Digite seu nome:")
+            janela_nome1.geometry("400x200")
+            label = tk.Label(janela_nome1, text="  Digite seu nome:  ")
             label.pack()
             entrada = tk.Entry(janela_nome1)
             entrada.pack()
@@ -82,8 +83,8 @@ def menu():
                 
             janela_nomeind = tk.Tk()
             janela_nomeind.title("JOGADOR 1")
-            janela_nomeind.geometry("200x100")
-            label = tk.Label(janela_nomeind, text="Digite seu nome:")
+            janela_nomeind.geometry("400x200")
+            label = tk.Label(janela_nomeind, text="  Digite seu nome:  ")
             label.pack()
             entrada = tk.Entry(janela_nomeind)
             entrada.pack()
@@ -95,12 +96,12 @@ def menu():
 
         janela_op = tk.Tk()
         janela_op.title("Introduza opção")
-        janela_op.geometry("200x100")
-        labelop1 = tk.Label(janela_op, text="Qual prefere?")
+        janela_op.geometry("400x200")
+        labelop1 = tk.Label(janela_op, text="  Qual prefere?  ")
         labelop1.pack()
-        botao1 = tk.Button(janela_op, text="1 VS 1", command=intrnome)
+        botao1 = tk.Button(janela_op, text="   1 VS 1   ", command=intrnome)
         botao1.pack()
-        botao2 = tk.Button(janela_op, text="1 VS BOT", command=intrnomeind)
+        botao2 = tk.Button(janela_op, text="  1 VS BOT  ", command=intrnomeind)
         botao2.pack()
         janela_op.mainloop()
 
@@ -108,6 +109,15 @@ def menu():
     def carregajogo():
         print("CARREGA JOGO")
 
+    def regrasjogo():
+        janela_regras = tk.Tk()
+        janela_regras.title ("Regras SENET")
+        janela_regras.geometry ("700x600")
+        
+        botaoregra = tk.Button(janela_regras, text="          OK          ")
+        janela_regras.mainloop()
+        
+        
     def sair():
         global estado_jogo
         estado_jogo = False
@@ -121,7 +131,7 @@ def menu():
             janela.blit(imagemfundo, (0, 0))
             criar_botao("NOVO JOGO", CINZA, VERDE, (250, 180), 220, 50, novojogo)
             criar_botao("CARREGA JOGO", CINZA, VERDE, (250, 240), 220, 50, carregajogo)
-            criar_botao("REGRAS JOGO", CINZA, VERDE, (250, 300), 220, 50, carregajogo)
+            criar_botao("REGRAS JOGO", CINZA, VERDE, (250, 300), 220, 50, regrasjogo)
             criar_botao("SAIR", CINZA, VERDE, (250, 360), 220, 50, sair)
         pygame.display.update()
     return jogadores
