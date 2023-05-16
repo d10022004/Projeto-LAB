@@ -75,6 +75,6 @@ def tab():
     aumentar_tamanho_fonte()
 
     window.mainloop()
-    re.verificar_vitoria()
+    #re.verificar_vitoria()
     
 tab()
