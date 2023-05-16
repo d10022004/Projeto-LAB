@@ -110,14 +110,20 @@ def menu():
         print("CARREGA JOGO")
 
     def regrasjogo():
+        def fechajanela():
+            janela_regras.destroy()
         janela_regras = tk.Tk()
         janela_regras.title ("Regras SENET")
-        janela_regras.geometry ("700x600")
-        janela_regras.configure (bg = 'peru')
-        frase1 = tk.Label (janela_regras, text="O jogo utiliza quatro varas de arremesso que têm a forma de meio cilindro, com a \n superfície arredondada pintada de preto e a superfície plana pintada de branco. O objetivo do \n jogo é lançar as varas e contar o número de brancos obtidos. Um resultado de nenhum é \ncontado como cinco, permitindo ao jogador avançar 5 casas e ter uma jogada extra. Se o \n resultado do lançamento for quatro ou um, o jogador avança o número de casas correspondente e ganha uma jogada extra. No caso de sair dois ou três, o jogador realiza um \n movimento e passa a vez ao adversário. Se não houver nenhum movimento legal disponível, o \n jogador perde a vez.\n")
+        janela_regras.geometry ("1280x1024")
+        frase1 = tk.Label (janela_regras, text="O jogo utiliza quatro varas de arremesso que têm a forma de meio cilindro, com a \n superfície arredondada pintada de preto e a superfície plana pintada de branco. O objetivo do \n jogo é lançar as varas e contar o número de brancos obtidos. Um resultado de nenhum é \ncontado como cinco, permitindo ao jogador avançar 5 casas e ter uma jogada extra. Se o \n resultado do lançamento for quatro ou um, o jogador avança o número de casas correspondente \n e ganha uma jogada extra. No caso de sair dois ou três, o jogador realiza um \n movimento e passa a vez ao adversário. Se não houver nenhum movimento legal disponível, o \n jogador perde a vez.\n", font = ("Arial", 16))
         frase1.pack()
-        frase2 = tk.Label (janela_regras, text = "")
-        botaoregra = tk.Button(janela_regras, text="          OK          ")
+        frase2 = tk.Label (janela_regras, text = "\nQuando não é possível mover nenhuma peça em qualquer direção, o jogador deve \n retroceder 5 casas. O tabuleiro possui 6 casas especiais: a Casa das Águas, onde a única \n maneira de sair é tirando 4 varas iguais em um único lançamento (com apenas uma tentativa \n por turno), ou voltando para a Casa da Segunda Vida. Há também a Casa da Beleza, que requer uma\n pontuação extra para entrar, e todas as peças precisam passar por ela para sair do \n tabuleiro. As outras três casas especiais são a Câmara dos Três Juízes, onde é necessário \n obter exatamente o número 3 para sair do tabuleiro, a Câmara dos Dois Juízes, onde é \n necessário obter exatamente o número 2, e a Casa de Heru (Hórus), onde é permitido tirar \n qualquer número acima de 1.\n", font = ("Arial", 16))
+        frase2.pack()
+        frase3 = tk.Label (janela_regras, text = "\nO objetivo final é ser o primeiro jogador a retirar todas as suas peças do tabuleiro.", font = ("Arial", 16))
+        frase3.pack()
+        frasef= tk.Label (janela_regras, text = "")
+        frasef.pack()
+        botaoregra = tk.Button(janela_regras, text="          OK          ", command = fechajanela)
         botaoregra.pack ()
         janela_regras.mainloop()
         
