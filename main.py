@@ -1,6 +1,13 @@
 import jogo as menu
-import new_tabuleiro as tab
-
+import tabuleiro as tab
 
 play = menu.menu()
-tab (play)
+
+def obter_nomes_jogadores():
+    jogador1 = input("Digite o nome do Jogador 1: ")
+    jogador2 = input("Digite o nome do Jogador 2: ")
+    
+    return jogador1, jogador2
+
+nomes_jogadores = obter_nomes_jogadores()
+tab.tab(*nomes_jogadores)
