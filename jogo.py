@@ -113,8 +113,12 @@ def menu():
         janela_regras = tk.Tk()
         janela_regras.title ("Regras SENET")
         janela_regras.geometry ("700x600")
-        
+        janela_regras.configure (bg = 'peru')
+        frase1 = tk.Label (janela_regras, text="O jogo utiliza quatro varas de arremesso que têm a forma de meio cilindro, com a \n superfície arredondada pintada de preto e a superfície plana pintada de branco. O objetivo do \n jogo é lançar as varas e contar o número de brancos obtidos. Um resultado de nenhum é \ncontado como cinco, permitindo ao jogador avançar 5 casas e ter uma jogada extra. Se o \n resultado do lançamento for quatro ou um, o jogador avança o número de casas correspondente e ganha uma jogada extra. No caso de sair dois ou três, o jogador realiza um \n movimento e passa a vez ao adversário. Se não houver nenhum movimento legal disponível, o \n jogador perde a vez.\n")
+        frase1.pack()
+        frase2 = tk.Label (janela_regras, text = "")
         botaoregra = tk.Button(janela_regras, text="          OK          ")
+        botaoregra.pack ()
         janela_regras.mainloop()
         
         
