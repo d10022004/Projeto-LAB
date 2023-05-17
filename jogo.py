@@ -9,7 +9,7 @@ def menu():
     imagemfundo = pygame.image.load("imagemfundo.jpeg")
     compri = imagemfundo.get_width()
     larg = imagemfundo.get_height()
-    janela = pygame.display.set_mode((compri, larg))
+    janela = pygame.display.set_mode((compri-50, larg-50))
     BRANCO = (255, 255, 255)
     PRETO = (0, 0, 0)
     CINZA = (200, 200, 200)
@@ -80,7 +80,7 @@ def menu():
                 jogadoresd['nome2'] = 'BOOT'
                 global estado_jogo
                 estado_jogo = False
-                
+            janela_op.destroy()
             janela_nomeind = tk.Tk()
             janela_nomeind.title("JOGADOR 1")
             janela_nomeind.geometry("400x200")
@@ -146,10 +146,6 @@ def menu():
         pygame.display.update()
     return jogadores
         
-
-
-
-
 
 
 
