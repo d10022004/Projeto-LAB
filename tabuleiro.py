@@ -4,7 +4,8 @@ import tkinter as tk
 import random
 import regras as re
 
-def tab():
+def tab(jogadores):
+    print (jogadores)
     botao_bastao = None
 
     def hist_poicoes(row, col):
@@ -92,4 +93,3 @@ def tab():
     window.mainloop()
 #    re.verificar_vitoria()
 
-tab()
