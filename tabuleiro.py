@@ -4,7 +4,7 @@ import tkinter as tk
 import random
 import regras as re
 
-def tab():
+def tab(jogadores):
     botao_bastao = None
     
     def hist_poicoes(row, col):
@@ -49,14 +49,23 @@ def tab():
     tabuleiro = tk.Frame(window, bg='White')
     tabuleiro.pack(fill=tk.BOTH, expand=True)
     
+    white_piece = tk.PhotoImage(file = "white_piece.png")
+    black_piece = tk.PhotoImage(file = "black_piece.png")
+
+    for col in range(10):
+        if (col) % 2 != 0:
+            cells[0][col].config(image= white_piece)
+        else:
+            cells[0][col].config(image= black_piece)
+    
     #Jogadores e função de rodar bastões
     jogadores_e_bastoes = tk.Frame(window)
     jogadores_e_bastoes.pack()
     
-    jogador1_label = tk.Label(jogadores_e_bastoes, text="Jogador 1")
+    jogador1_label = tk.Label(jogadores_e_bastoes, text=jogadores['nome1'])
     jogador1_label.pack(side=tk.LEFT)
     
-    jogador2_label = tk.Label(jogadores_e_bastoes, text="Jogador 2")
+    jogador2_label = tk.Label(jogadores_e_bastoes, text=jogadores['nome2'])
     jogador2_label.pack(side=tk.RIGHT)
     
     counter_frame = tk.Frame(window)
@@ -74,4 +83,5 @@ def tab():
     aumentar_tamanho_fonte()
     window.mainloop()
     
-tab()
+jogadores = {'nome1' : 'David', 'nome2' : 'rick'}
+tab(jogadores)
