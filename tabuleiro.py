@@ -52,11 +52,19 @@ def tab(jogadores):
     white_piece = tk.PhotoImage(file = "white_piece.png")
     black_piece = tk.PhotoImage(file = "black_piece.png")
 
-    for col in range(10):
-        if (col) % 2 != 0:
-            cells[0][col].config(image= white_piece)
-        else:
-            cells[0][col].config(image= black_piece)
+    celu = []
+    for row in range(1):
+        row_celu = []
+        for col in range(10):
+            celu = tk.Button(board, text="", width=10, height=5, command=lambda r=row, c=col: hist_poicoes(r, c))
+            if (row + col) % 2 == 0:
+                celu.configure(image = white_piece)
+            else:
+                celu.configure(image = black_piece)
+            celu.grid(row=row, column=col)
+            row_celu.append(cell)
+        cells.append(row_celu)
+
     
     #Jogadores e função de rodar bastões
     jogadores_e_bastoes = tk.Frame(window)
@@ -83,3 +91,5 @@ def tab(jogadores):
     aumentar_tamanho_fonte()
     window.mainloop()
     
+jogadores = {'nome1' : 'david', 'nome2' :  'leo'}
+tab(jogadores)
