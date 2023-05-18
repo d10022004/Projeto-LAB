@@ -144,7 +144,7 @@ def menu():
             criar_botao("REGRAS JOGO", CINZA, VERDE, (250, 300), 220, 50, regrasjogo)
             criar_botao("SAIR", CINZA, VERDE, (250, 360), 220, 50, sair)
         pygame.display.update()
-    return jogadores
+    return jogadoresd
         
 
 
