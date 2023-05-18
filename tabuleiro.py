@@ -56,7 +56,7 @@ def tab(jogadores):
     for row in range(1):
         row_celu = []
         for col in range(10):
-            celu = tk.Button(board, text="", width=10, height=5, command=lambda r=row, c=col: hist_poicoes(r, c))
+            celu = tk.Button(board, text="", width=20, height=20, command=lambda r=row, c=col: hist_poicoes(r, c))
             if (row + col) % 2 == 0:
                 celu.configure(image = white_piece)
             else:
