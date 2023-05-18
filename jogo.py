@@ -77,7 +77,7 @@ def menu():
                 jogadoresd['nome1'] = entrada.get()
                 jogadores.append(jogadoresd)
                 janela_nomeind.destroy()
-                jogadoresd['nome2'] = 'BOOT'
+                jogadoresd['nome2'] = 'BOT'
                 global estado_jogo
                 estado_jogo = False
             janela_op.destroy()
