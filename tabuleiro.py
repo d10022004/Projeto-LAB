@@ -90,4 +90,3 @@ def tab(jogadores):
     
     aumentar_tamanho_fonte()
     window.mainloop()
-    
