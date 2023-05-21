@@ -61,7 +61,9 @@ def tab(jogadores):
     board.pack()
     
     cells = []
+    i=0
     for row in range(3):
+        i=i+1
         row_cells = []
         for col in range(10):
             cell = tk.Button(board, text="", width = 10, height = 5, command = lambda r = row, c = col: hist_poicoes(r, c))
@@ -72,8 +74,10 @@ def tab(jogadores):
             cell.grid(row=row, column=col)
             row_cells.append(cell)
         cells.append(row_cells)
+
     tabuleiro = tk.Frame(window, bg = 'White')
     tabuleiro.pack(fill=tk.BOTH, expand = True)
+   
     
     white_piece = tk.PhotoImage(file = "white_piece.png")
     black_piece = tk.PhotoImage(file = "black_piece.png")
@@ -91,6 +95,7 @@ def tab(jogadores):
             row_celu.append(cell)
         cells.append(row_celu)
 
+    print (cells)
     
     #Jogadores e função de rodar bastões
     
