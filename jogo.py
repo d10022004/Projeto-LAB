@@ -3,13 +3,14 @@ import tkinter as tk
 estado_jogo = True
 jogadores = []
 jogadoresd = {}
+
 def menu():
     global estado_jogo
     pygame.init()
     imagemfundo = pygame.image.load("imagemfundo.jpeg")
     compri = imagemfundo.get_width()
     larg = imagemfundo.get_height()
-    janela = pygame.display.set_mode((compri-50, larg-50))
+    janela = pygame.display.set_mode((compri - 1, larg - 1))
     BRANCO = (255, 255, 255)
     PRETO = (0, 0, 0)
     CINZA = (200, 200, 200)
@@ -29,9 +30,7 @@ def menu():
         texto_surface = pygame.font.Font(None, 40).render(texto, True, PRETO)
         texto_rect = texto_surface.get_rect(center=retangulo.center)
         janela.blit(texto_surface, texto_rect)
-        
-        
-
+         
     def novojogo():
         def intrnome():
             def segundoplay(entrada):
@@ -49,24 +48,25 @@ def menu():
                 janela_nome2 = tk.Tk()
                 janela_nome2.title("JOGADOR 2")
                 janela_nome2.geometry("400x200")
-                label = tk.Label(janela_nome2, text="  Digite seu nome:  ")
+                label = tk.Label(janela_nome2, text ="  Introduza o seu nome:  ")
                 label.pack()
                 entrada = tk.Entry(janela_nome2)
                 entrada.pack()
-                botao = tk.Button(janela_nome2, text="   OK   ", command=fechar)
+                botao = tk.Button(janela_nome2, text ="   OK   ", command=fechar)
                 botao.pack()
-                label_nome = tk.Label(janela_nome2, text="")
+                label_nome = tk.Label(janela_nome2, text ="")
                 label_nome.pack()
                 janela_nome2.mainloop()
+            
             janela_op.destroy()
             janela_nome1 = tk.Tk()
             janela_nome1.title("JOGADOR 1")
             janela_nome1.geometry("400x200")
-            label = tk.Label(janela_nome1, text="  Digite seu nome:  ")
+            label = tk.Label(janela_nome1, text ="  Introduza o seu nome:  ")
             label.pack()
             entrada = tk.Entry(janela_nome1)
             entrada.pack()
-            botao = tk.Button(janela_nome1, text="OK", command=lambda: segundoplay(entrada))
+            botao = tk.Button(janela_nome1, text="OK", command = lambda: segundoplay(entrada))
             botao.pack()
             label_nome = tk.Label(janela_nome1, text="")
             label_nome.pack()
@@ -80,32 +80,34 @@ def menu():
                 jogadoresd['nome2'] = 'BOT'
                 global estado_jogo
                 estado_jogo = False
+            
             janela_op.destroy()
             janela_nomeind = tk.Tk()
             janela_nomeind.title("JOGADOR 1")
             janela_nomeind.geometry("400x200")
-            label = tk.Label(janela_nomeind, text="  Digite seu nome:  ")
+            label = tk.Label(janela_nomeind, text = "  Introduza o seu nome:  ")
             label.pack()
             entrada = tk.Entry(janela_nomeind)
             entrada.pack()
-            botao = tk.Button(janela_nomeind, text="OK", command=lambda: fecharind(entrada))
+            botao = tk.Button(janela_nomeind, text = "OK", command=lambda: fecharind(entrada))
             botao.pack()
-            label_nome = tk.Label(janela_nomeind, text="")
+            label_nome = tk.Label(janela_nomeind, text = "")
             label_nome.pack()
             janela_nomeind.mainloop()
 
         janela_op = tk.Tk()
-        janela_op.title("Introduza opção")
+        janela_op.title("Introduza uma opção")
         janela_op.geometry("400x200")
-        labelop1 = tk.Label(janela_op, text="  Qual prefere?  ")
+        labelop1 = tk.Label(janela_op, text = "  Qual pretende jogar?  ")
         labelop1.pack()
-        botao1 = tk.Button(janela_op, text="   1 VS 1   ", command=intrnome)
+        botao1 = tk.Button(janela_op, text = "   1 VS 1   ", command = intrnome)
         botao1.pack()
-        botao2 = tk.Button(janela_op, text="  1 VS BOT  ", command=intrnomeind)
+        botao2 = tk.Button(janela_op, text = "  1 VS BOT  ", command = intrnomeind)
         botao2.pack()
         janela_op.mainloop()
 
       #  return dadosjogadores
+
     def carregajogo():
         print("CARREGA JOGO")
 
@@ -115,7 +117,7 @@ def menu():
         janela_regras = tk.Tk()
         janela_regras.title ("Regras SENET")
         janela_regras.geometry ("1280x1024")
-        frase1 = tk.Label (janela_regras, text="O jogo utiliza quatro varas de arremesso que têm a forma de meio cilindro, com a \n superfície arredondada pintada de preto e a superfície plana pintada de branco. O objetivo do \n jogo é lançar as varas e contar o número de brancos obtidos. Um resultado de nenhum é \ncontado como cinco, permitindo ao jogador avançar 5 casas e ter uma jogada extra. Se o \n resultado do lançamento for quatro ou um, o jogador avança o número de casas correspondente \n e ganha uma jogada extra. No caso de sair dois ou três, o jogador realiza um \n movimento e passa a vez ao adversário. Se não houver nenhum movimento legal disponível, o \n jogador perde a vez.\n", font = ("Arial", 16))
+        frase1 = tk.Label (janela_regras, text = "O jogo utiliza quatro varas de arremesso que têm a forma de meio cilindro, com a \n superfície arredondada pintada de preto e a superfície plana pintada de branco. O objetivo do \n jogo é lançar as varas e contar o número de brancos obtidos. Um resultado de nenhum é \ncontado como cinco, permitindo ao jogador avançar 5 casas e ter uma jogada extra. Se o \n resultado do lançamento for quatro ou um, o jogador avança o número de casas correspondente \n e ganha uma jogada extra. No caso de sair dois ou três, o jogador realiza um \n movimento e passa a vez ao adversário. Se não houver nenhum movimento legal disponível, o \n jogador perde a vez.\n", font = ("Arial", 16))
         frase1.pack()
         frase2 = tk.Label (janela_regras, text = "\nQuando não é possível mover nenhuma peça em qualquer direção, o jogador deve \n retroceder 5 casas. O tabuleiro possui 6 casas especiais: a Casa das Águas, onde a única \n maneira de sair é tirando 4 varas iguais em um único lançamento (com apenas uma tentativa \n por turno), ou voltando para a Casa da Segunda Vida. Há também a Casa da Beleza, que requer uma\n pontuação extra para entrar, e todas as peças precisam passar por ela para sair do \n tabuleiro. As outras três casas especiais são a Câmara dos Três Juízes, onde é necessário \n obter exatamente o número 3 para sair do tabuleiro, a Câmara dos Dois Juízes, onde é \n necessário obter exatamente o número 2, e a Casa de Heru (Hórus), onde é permitido tirar \n qualquer número acima de 1.\n", font = ("Arial", 16))
         frase2.pack()
@@ -123,7 +125,7 @@ def menu():
         frase3.pack()
         frasef= tk.Label (janela_regras, text = "")
         frasef.pack()
-        botaoregra = tk.Button(janela_regras, text="          OK          ", command = fechajanela)
+        botaoregra = tk.Button(janela_regras, text = "          OK          ", command = fechajanela)
         botaoregra.pack ()
         janela_regras.mainloop()
         
@@ -143,9 +145,7 @@ def menu():
             criar_botao("CARREGA JOGO", CINZA, VERDE, (250, 240), 220, 50, carregajogo)
             criar_botao("REGRAS JOGO", CINZA, VERDE, (250, 300), 220, 50, regrasjogo)
             criar_botao("SAIR", CINZA, VERDE, (250, 360), 220, 50, sair)
-        pygame.display.update()
-    return jogadoresd
         
+        pygame.display.update()
 
-
-
+    return jogadoresd
