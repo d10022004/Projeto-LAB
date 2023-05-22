@@ -4,11 +4,8 @@ import os
 import tkinter as tk
 import random
 import keyboard #IMPORT DE KEYBOARD PARA O MACRO
-<<<<<<< Updated upstream
 import regras as re
-=======
 import pygame
->>>>>>> Stashed changes
 
 def tab(jogadores):
     botao_bastao = None
@@ -23,9 +20,7 @@ def tab(jogadores):
         bastoes = [random.choice(["Branco", "Preto"]) for _ in range(4)]
     
         contador_branco = bastoes.count("Branco")
-        contador_preto = bastoes.count("Preto")
-        """_summary_
-        """    
+        contador_preto = bastoes.count("Preto")   
         label_branco.config(text=f"Branco: {contador_branco}")
         label_preto.config(text=f"Preto: {contador_preto}")
     
@@ -129,17 +124,17 @@ def tab(jogadores):
 
     
     
-    casasespeciais1 = pygame.image.load("senet.png")
-    casasespeciais1 = pygame.transform.scale(casasespeciais1, (10, 5))
-    x=16
-    y=2
-    posicao_x= x*10
-    posicao_y= y*10
-    superficie_imagem = pygame.Surface((10, 5))
-    superficie_imagem.blit(casasespeciais1, (0, 0))
-    tab = pygame.display.get_surface()
-    tab.blit(casasespeciais1,(posicao_x, posicao_y))
-    pygame.display.update()  
+    #scasasespeciais1 = pygame.image.load("senet.png")
+    #casasespeciais1 = pygame.transform.scale(casasespeciais1, (10, 5))
+    #x=16
+    #y=2
+    #posicao_x= x*10
+    #posicao_y= y*10
+    #superficie_imagem = pygame.Surface((10, 5))
+    #superficie_imagem.blit(casasespeciais1, (0, 0))
+    #tab = pygame.display.get_surface()
+    #stab.blit(casasespeciais1,(posicao_x, posicao_y))
+    #pygame.display.update()  
   
 
     celu = []
@@ -185,11 +180,4 @@ def tab(jogadores):
     #keyboard.add_hotkey('esc', atalho_menu_pausa)
 
     aumentar_tamanho_fonte()
-<<<<<<< HEAD
     window.mainloop()
-
-    
-tab({'nome1': 'fdfgwsef', 'nome2': 'BOT'})
-=======
-    window.mainloop()
->>>>>>> 5ee2c08a481e3d1deef5d04248a8bb7a662de1da
