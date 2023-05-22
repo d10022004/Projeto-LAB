@@ -67,8 +67,3 @@ def regras():
     
     print(peao)
     return ladobranco, ladomadeira, ladobranco
-    #print("sairam", ladobranco, "bastoes com lado branco")
-    #print("sairam", ladomadeira, "bastoes com lado de madeira")
-
-
-print (regras())
