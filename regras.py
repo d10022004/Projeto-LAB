@@ -50,7 +50,7 @@ def regras():
 
     if peao == 26 and ladobranco == 1:
         peao += 5
-        print("Peão", i+1, "esta fora de jogo\n")  # 1 ponto para o jogador
+        print("Peão esta fora de jogo\n")  # 1 ponto para o jogador
     elif peao == 27 and ladobranco == 4:
         peao += 5
         print("Peãoesta fora de jogo\n")  # 1 ponto para o jogador
@@ -66,4 +66,7 @@ def regras():
 
     
     print(peao)
+
     return ladobranco, ladomadeira, ladobranco
+    #print("sairam", ladobranco, "bastoes com lado branco")
+    #print("sairam", ladomadeira, "bastoes com lado de madeira")
