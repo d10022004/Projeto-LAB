@@ -4,6 +4,7 @@ import os
 import tkinter as tk
 import random
 import keyboard #IMPORT DE KEYBOARD PARA O MACRO
+import regras as re
 
 def tab(jogadores):
     botao_bastao = None
@@ -12,18 +13,15 @@ def tab(jogadores):
     def hist_poicoes(row, col):
         print("Posicao celula clicada:", row, col)
 
-    def jogar ():
-        botao_com.destroy()
-        import jogabilidade as play
-        play.jogar_com_dois()
+    
     
     def rodar_batoes():
-        nonlocal botao_bastao
         bastoes = [random.choice(["Branco", "Preto"]) for _ in range(4)]
     
         contador_branco = bastoes.count("Branco")
         contador_preto = bastoes.count("Preto")
-    
+        """_summary_
+        """    
         label_branco.config(text=f"Branco: {contador_branco}")
         label_preto.config(text=f"Preto: {contador_preto}")
     
@@ -63,7 +61,28 @@ def tab(jogadores):
     
     board = tk.Frame(window)
     board.pack()
-    
+    def jogar ():
+        def jogar_com_dois():
+            def ola():
+                bastao_preto, bastao_branco, resultado  = re.regras()
+                label_branco.config(text=f"Branco: {bastao_branco}") 
+                label_preto.config(text=f"Preto: {bastao_preto}") 
+                print (bastao_preto, bastao_branco, resultado)
+            em_jogo = True
+            i=0
+            for i in range(2):
+                while em_jogo == True:
+                    botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = ola)
+                    botao_lan.pack()
+                    botao_lan.config(font = ("Arial", 14))
+                    em_jogo = False
+        
+        botao_com.destroy()
+        numjog=1
+        if numjog ==1:
+            jogar_com_dois()
+        
+        
     cells = []
     cell_number = 1
     for row in range(3):
@@ -148,5 +167,6 @@ def tab(jogadores):
 
     aumentar_tamanho_fonte()
     window.mainloop()
+
     
 tab({'nome1': 'fdfgwsef', 'nome2': 'BOT'})
