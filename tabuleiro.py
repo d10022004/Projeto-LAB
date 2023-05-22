@@ -4,7 +4,11 @@ import os
 import tkinter as tk
 import random
 import keyboard #IMPORT DE KEYBOARD PARA O MACRO
+<<<<<<< Updated upstream
 import regras as re
+=======
+import pygame
+>>>>>>> Stashed changes
 
 def tab(jogadores):
     botao_bastao = None
@@ -122,6 +126,21 @@ def tab(jogadores):
     
     white_piece = tk.PhotoImage(file = "white_piece.png")
     black_piece = tk.PhotoImage(file = "black_piece.png")
+
+    
+    
+    casasespeciais1 = pygame.image.load("senet.png")
+    casasespeciais1 = pygame.transform.scale(casasespeciais1, (10, 5))
+    x=16
+    y=2
+    posicao_x= x*10
+    posicao_y= y*10
+    superficie_imagem = pygame.Surface((10, 5))
+    superficie_imagem.blit(casasespeciais1, (0, 0))
+    tab = pygame.display.get_surface()
+    tab.blit(casasespeciais1,(posicao_x, posicao_y))
+    pygame.display.update()  
+  
 
     celu = []
     for row in range(1):
