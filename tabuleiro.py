@@ -166,7 +166,11 @@ def tab(jogadores):
     #keyboard.add_hotkey('esc', atalho_menu_pausa)
 
     aumentar_tamanho_fonte()
+<<<<<<< HEAD
     window.mainloop()
 
     
 tab({'nome1': 'fdfgwsef', 'nome2': 'BOT'})
+=======
+    window.mainloop()
+>>>>>>> 5ee2c08a481e3d1deef5d04248a8bb7a662de1da
