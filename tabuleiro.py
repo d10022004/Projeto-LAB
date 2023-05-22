@@ -13,7 +13,9 @@ def tab(jogadores):
         print("Posicao celula clicada:", row, col)
 
     def jogar ():
-        return 0
+        botao_com.destroy()
+        import jogabilidade as play
+        play.jogar_com_dois()
     
     def rodar_batoes():
         nonlocal botao_bastao
@@ -30,7 +32,7 @@ def tab(jogadores):
         jogador2_label.config(font = ("Arial", 16))
         label_branco.config(font = ("Arial", 14))
         label_preto.config(font = ("Arial", 14))
-        botao_bastao.config(font = ("Arial", 14))
+        botao_com.config(font = ("Arial", 14))
 
     def abrir_menu_pausa():
         nonlocal janela_pausa
@@ -137,8 +139,8 @@ def tab(jogadores):
     label_preto= tk.Label(counter_frame, text = "Preto: 0")
     label_preto.pack(side = tk.LEFT, padx = 5)
     
-    botao_bastao = tk.Button(jogadores_e_bastoes, text = "JOGAR?", command = jogar)
-    botao_bastao.pack()
+    botao_com = tk.Button(jogadores_e_bastoes, text = "JOGAR?", command = jogar)
+    botao_com.pack()
 
     pausa_botao = tk.Button(window, text = "Pausa", command = abrir_menu_pausa)
     pausa_botao.pack(pady=10)
