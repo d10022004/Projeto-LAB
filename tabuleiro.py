@@ -7,6 +7,25 @@ import keyboard #IMPORT DE KEYBOARD PARA O MACRO
 import regras as re
 import pygame
 
+#definir coordenadas para celulas num tabuleiro
+i=1
+dicionario = {}
+lar=0
+com=5
+for i in range (1, 31):
+    if i <=10:
+        lar +=10
+        dicionario [i] = (lar/2, com/2)
+    if i > 10 and i <= 20:
+        com = 10
+        dicionario [i] = (lar/2, com/2)
+        if i < 20:
+            lar -= 10
+    if i > 20 and i <= 30:
+        com = 15
+        dicionario [i] = (lar/2, com/2)
+        lar += 10
+print (dicionario)
 def tab(jogadores):
     botao_bastao = None
     janela_pausa = None
@@ -63,17 +82,19 @@ def tab(jogadores):
     def jogar ():
         def jogar_com_dois():
             def ola():
+                botao_lan.destroy()
                 bastao_preto, bastao_branco, resultado  = re.regras()
                 label_branco.config(text=f"Branco: {bastao_branco}") 
                 label_preto.config(text=f"Preto: {bastao_preto}") 
                 print (bastao_preto, bastao_branco, resultado)
             em_jogo = True
             i=0
-            for i in range(2):
-                while em_jogo == True:
-                    botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = ola)
-                    botao_lan.pack()
-                    botao_lan.config(font = ("Arial", 14))
+            while em_jogo == True:
+                for i in range(2):
+                    if i==0:   
+                        botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = ola)
+                        botao_lan.config(font = ("Arial", 16))
+                        botao_lan.pack()
                     em_jogo = False
         
         botao_com.destroy()
@@ -84,6 +105,14 @@ def tab(jogadores):
         
     cells = []
     cell_number = 1
+    ###################celulas especiais#####################################
+    image1 = tk.PhotoImage(file = "senet.png")
+    image2 = tk.PhotoImage(file = "senet1.png")
+    image3 = tk.PhotoImage(file = "senet2.png")
+    image4 = tk.PhotoImage(file = "senet3.png")
+    image5 = tk.PhotoImage(file = "senet4.png")
+    image6 = tk.PhotoImage(file = "senet5.png")
+    ########################################################################3
     for row in range(3):
         row_cells = []
         for col in range(10):
@@ -111,8 +140,21 @@ def tab(jogadores):
                 aux = 21
                 cell_number = aux + i
                 i += 1
+            if cell_number == 15:
+                cell.configure(image = image1, width=75, height=80) 
+            if cell_number == 26:
+                cell.configure(image = image2, width=75, height=80)
+            if cell_number == 27:
+                cell.configure(image = image3, width=75, height=80)
+            if cell_number == 28:
+                cell.configure(image = image4, width=75, height=80)
+            if cell_number == 29:
+                cell.configure(image = image5, width=75, height=80)
+            if cell_number == 30:
+                cell.configure(image = image6, width=75, height=80)
             cells.append(cell_number)
-    print (cells)
+        print (cells)
+
 
 
     tabuleiro = tk.Frame(window, bg = 'White')
@@ -139,16 +181,20 @@ def tab(jogadores):
 
     celu = []
     for row in range(1):
-        row_celu = []
+        row_celub = []
+        row_celup = []
         for col in range(10):
             celu = tk.Button(board, text = "", width = 20, height = 20, command = lambda r=row, c=col: hist_poicoes(r, c))
             if (row + col) % 2 == 0:
                 celu.configure(image = white_piece)
+                celu.grid(row = row, column=col)
+                row_celub.append(cell)
             else:
                 celu.configure(image = black_piece)
-            celu.grid(row = row, column=col)
-            row_celu.append(cell)
-        cells.append(row_celu)
+                celu.grid(row = row, column=col)
+                row_celup.append(cell)
+
+            
 
     
     #Jogadores e função de rodar bastões
@@ -181,3 +227,4 @@ def tab(jogadores):
 
     aumentar_tamanho_fonte()
     window.mainloop()
+tab ({'nome1': 'dsgfdaf', 'nome2': 'BOT'})
