@@ -7,6 +7,8 @@ ladomadeira = 0
 peao = [0, 0]
 
 def regras():
+    global ladobranco  
+    global ladomadeira
     for i in range(2):
         for j in range(1, 5):
             bastão = random.randint(0, 2)
@@ -15,7 +17,7 @@ def regras():
                 ladobranco += 1
             else:
                 print("bastao", j, "-> Lado de madeira")
-                ladomadeira += 1
+                ladomadeira = ladomadeira + 1
 
         if ladobranco == 0:
             print("Mova 5 quadrados e ganha uma jogada extra")
