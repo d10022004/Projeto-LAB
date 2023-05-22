@@ -3,7 +3,6 @@
 import os
 import tkinter as tk
 import random
-import regras as re
 import keyboard #IMPORT DE KEYBOARD PARA O MACRO
 
 def tab(jogadores):
@@ -12,6 +11,9 @@ def tab(jogadores):
     
     def hist_poicoes(row, col):
         print("Posicao celula clicada:", row, col)
+
+    def jogar ():
+        return 0
     
     def rodar_batoes():
         nonlocal botao_bastao
@@ -61,19 +63,37 @@ def tab(jogadores):
     board.pack()
     
     cells = []
-    i=0
+    cell_number = 1
     for row in range(3):
-        i=i+1
         row_cells = []
         for col in range(10):
-            cell = tk.Button(board, text="", width = 10, height = 5, command = lambda r = row, c = col: hist_poicoes(r, c))
+            cell = tk.Button(board, text="", width=10, height=5, command=lambda r=row, c=col: hist_poicoes(r, c))
             if (row + col) % 2 == 0:
-                cell.configure(bg ='#8B4513')
+                cell.configure(bg='#8B4513')
             else:
-                cell.configure(bg ='#D2B48C')
+                cell.configure(bg='#D2B48C')
             cell.grid(row=row, column=col)
             row_cells.append(cell)
-        cells.append(row_cells)
+            if row == 0:
+                if col == 0:
+                    i=0
+                cell_number = i+1  
+                i += 1
+            elif row==1:
+                if col == 0:
+                    i=0
+                aux = 20
+                cell_number = aux - i  
+                i += 1
+            elif row==2:
+                if col == 0:
+                    i=0
+                aux = 21
+                cell_number = aux + i
+                i += 1
+            cells.append(cell_number)
+    print (cells)
+
 
     tabuleiro = tk.Frame(window, bg = 'White')
     tabuleiro.pack(fill=tk.BOTH, expand = True)
@@ -95,7 +115,7 @@ def tab(jogadores):
             row_celu.append(cell)
         cells.append(row_celu)
 
-    print (cells)
+    
     
     #Jogadores e função de rodar bastões
     
@@ -117,7 +137,7 @@ def tab(jogadores):
     label_preto= tk.Label(counter_frame, text = "Preto: 0")
     label_preto.pack(side = tk.LEFT, padx = 5)
     
-    botao_bastao = tk.Button(jogadores_e_bastoes, text = "Rodar Bastões", command = rodar_batoes)
+    botao_bastao = tk.Button(jogadores_e_bastoes, text = "JOGAR?", command = jogar)
     botao_bastao.pack()
 
     pausa_botao = tk.Button(window, text = "Pausa", command = abrir_menu_pausa)
