@@ -118,7 +118,6 @@ def tab(jogadores):
         cells.append(row_celu)
 
     
-    
     #Jogadores e função de rodar bastões
     
     jogadores_e_bastoes = tk.Frame(window)
@@ -145,7 +144,7 @@ def tab(jogadores):
     pausa_botao = tk.Button(window, text = "Pausa", command = abrir_menu_pausa)
     pausa_botao.pack(pady=10)
     
-    keyboard.add_hotkey('esc', atalho_menu_pausa)
+    #keyboard.add_hotkey('esc', atalho_menu_pausa)
 
     aumentar_tamanho_fonte()
     window.mainloop()
