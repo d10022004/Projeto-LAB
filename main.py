@@ -1,6 +1,9 @@
 import jogo as menu
+import tabuleiro as tab
+
 while menu.estado_jogo == True:
     play = menu.menu()
+
 print (play)
-import tabuleiro as tab
+
 tab.tab(play)
