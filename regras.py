@@ -7,9 +7,11 @@ ladomadeira = 0
 peao = 0
 
 def regras():
-    global ladobranco  
-    global ladomadeira
-    global peao
+    bastão = 0
+    ladobranco = 0
+    ladomadeira = 0
+    peao = 0
+
     for j in range(1, 5):
         bastão = random.randint(0, 2)
         if bastão == 1:
