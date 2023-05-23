@@ -8,32 +8,37 @@ import regras as re
 import pygame
 
 #definir coordenadas para celulas num tabuleiro
-i=1
+matriz = []
+h=1
 dicionario = {}
 lar=0
 com=5
-for i in range (1, 31):
-    if i <=10:
+for h in range (1, 31):
+    if h <=10:
         lar +=10
-        dicionario [i] = (lar/2, com/2)
-    if i > 10 and i <= 20:
+        dicionario [h] = lar/2, com/2
+    if h> 10 and h <= 20:
         com = 10
-        dicionario [i] = (lar/2, com/2)
-        if i < 20:
+        dicionario [h] = lar/2, com/2
+        if h < 20:
             lar -= 10
-    if i > 20 and i <= 30:
+    if h > 20 and h <= 30:
         com = 15
-        dicionario [i] = (lar/2, com/2)
+        dicionario [h] = lar/2, com/2
         lar += 10
 print (dicionario)
 def tab(jogadores):
     botao_bastao = None
     janela_pausa = None
+    lancamento = 0
     
     def hist_poicoes(row, col):
         print("Posicao celula clicada:", row, col)
 
-    
+    def verifica(): 
+        global resultado
+        if resultado == 0:
+            print ("OLA")    
     
     def rodar_batoes():
         bastoes = [random.choice(["Branco", "Preto"]) for _ in range(4)]
@@ -70,8 +75,6 @@ def tab(jogadores):
 
     def atalho_menu_pausa():
         abrir_menu_pausa()
-
-#   keyboard.on_press_key("esc", atalho_menu_pausa) TENTATIVA DE MACRO ATRAVES DE TECLADO
     
     window = tk.Tk()
     window.geometry("800x400")
@@ -80,27 +83,25 @@ def tab(jogadores):
     board = tk.Frame(window)
     board.pack()
     def jogar ():
-        def jogar_com_dois():
-            def ola():
-                botao_lan.destroy()
-                bastao_preto, bastao_branco, resultado  = re.regras()
-                label_branco.config(text=f"Branco: {bastao_branco}") 
-                label_preto.config(text=f"Preto: {bastao_preto}") 
-                print (bastao_preto, bastao_branco, resultado)
-            em_jogo = True
-            i=0
-            while em_jogo == True:
-                for i in range(2):
-                    if i==0:   
-                        botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = ola)
-                        botao_lan.config(font = ("Arial", 16))
-                        botao_lan.pack()
-                    em_jogo = False
-        
         botao_com.destroy()
-        numjog=1
-        if numjog ==1:
-            jogar_com_dois()
+        def ola():
+            botao_lan.destroy()
+            bastao_preto, bastao_branco, resultado  = re.regras()
+            label_branco.config(text=f"Branco: {bastao_branco}") 
+            label_preto.config(text=f"Preto: {bastao_preto}") 
+            print (bastao_preto, bastao_branco, resultado)
+        em_jogo = True
+        p=0
+        while em_jogo == True:
+            for p in range(2):
+                if p==0:   
+                    botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = ola)
+                    botao_lan.config(font = ("Arial", 16))
+                    botao_lan.pack()
+                em_jogo = False
+        
+        
+        
         
         
     cells = []
@@ -116,7 +117,7 @@ def tab(jogadores):
     for row in range(3):
         row_cells = []
         for col in range(10):
-            cell = tk.Button(board, text="", width=10, height=5, command=lambda r=row, c=col: hist_poicoes(r, c))
+            cell = tk.Button(board, text="", width=10, height=5)
             if (row + col) % 2 == 0:
                 cell.configure(bg='#8B4513')
             else:
@@ -164,27 +165,13 @@ def tab(jogadores):
     white_piece = tk.PhotoImage(file = "white_piece.png")
     black_piece = tk.PhotoImage(file = "black_piece.png")
 
-    
-    
-    #scasasespeciais1 = pygame.image.load("senet.png")
-    #casasespeciais1 = pygame.transform.scale(casasespeciais1, (10, 5))
-    #x=16
-    #y=2
-    #posicao_x= x*10
-    #posicao_y= y*10
-    #superficie_imagem = pygame.Surface((10, 5))
-    #superficie_imagem.blit(casasespeciais1, (0, 0))
-    #tab = pygame.display.get_surface()
-    #stab.blit(casasespeciais1,(posicao_x, posicao_y))
-    #pygame.display.update()  
-  
 
     celu = []
     for row in range(1):
         row_celub = []
         row_celup = []
         for col in range(10):
-            celu = tk.Button(board, text = "", width = 20, height = 20, command = lambda r=row, c=col: hist_poicoes(r, c))
+            celu = tk.Button(board, text = "", width = 20, height = 20, command=verifica)
             if (row + col) % 2 == 0:
                 celu.configure(image = white_piece)
                 celu.grid(row = row, column=col)
