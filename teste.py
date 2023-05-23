@@ -1,20 +1,21 @@
-# Definir tamanho do tabuleiro de xadrez
-fila = 3
-colunas =10
+import tkinter as tk
 
-# Função para localizar quadrados
-def localizar_quadrados():
-    quadrados = []
-    quadrado=0
-    for i in range(3):
-        for j in range(10):
-            quadrado = quadrado+1
-            quadrados.append(quadrado)
-    return quadrados
+def mover_botao():
+    # Move o botão para a coordenada (50, 50)
+    botao.place(x=50, y=50)
 
-# Chamada da função para obter os quadrados
-quadrados_xadrez = localizar_quadrados()
+# Cria a janela principal
+window = tk.Tk()
+window.geometry("400x400")
+window.title("Mover Botão")
 
-# Imprimir os quadrados
+# Cria o botão inicial na coordenada (30, 20)
+botao = tk.Button(window, text="Botão")
+botao.place(x=30, y=20)
 
-print(quadrados_xadrez)
+# Botão para mover o botão
+botao_mover = tk.Button(window, text="Mover Botão", command=mover_botao)
+botao_mover.pack(pady=10)
+
+# Inicia a aplicação
+window.mainloop()
