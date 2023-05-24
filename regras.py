@@ -27,12 +27,12 @@ def regras():
         
     if ladobranco == 0:
         print("  *saiu 0 lados brancos")
-        print("  *sairam 5 lados de madeira")
+        print("  *sairam 4 lados de madeira")
         print("Mova 5 quadrados e ganha uma jogada extra\n")
         peao += 5
     elif ladobranco == 1:
         print("  *saiu 1 lado branco")
-        print("  *sairam 4 lados de madeira")
+        print("  *sairam 3 lados de madeira")
         print("Mova 1 quadrado e ganha uma jogada extra\n")
         peao += 1
     elif ladobranco == 2:
@@ -42,11 +42,11 @@ def regras():
         peao += 2
     elif ladobranco == 3:
         print("  *sairam 3 lados brancos")
-        print("  *sairam 2 lados de madeira")
+        print("  *sairam 1 lados de madeira")
         print("Mova 3 quadrados\n")
         peao += 3
     elif ladobranco == 4:
-        print("  *saiu 1 lado de madeira\n")
+        print("  *saiu 0 lado de madeira\n")
         print("Mova 4 quadrados e ganha uma jogada extra")
         peao += 4
 
@@ -70,8 +70,9 @@ def regras():
     print(peao)
     print("sairam", ladobranco, "bastoes com lado branco")
     print("sairam", ladomadeira, "bastoes com lado de madeira")
-
-    return ladobranco, ladomadeira, ladobranco
+    if ladobranco == 0:
+        return ladobranco, ladomadeira, 5
+    else:
+        return ladobranco, ladomadeira, ladobranco
     
-
-
+regras()
