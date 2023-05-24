@@ -8,24 +8,26 @@ import regras as re
 import pygame
 
 #definir coordenadas para celulas num tabuleiro
+button_positions = {}
 matriz = []
 h=1
 dicionario = {}
-lar=0
-com=5
+lar=55
+com=60
 for h in range (1, 31):
     if h <=10:
-        lar +=10
         dicionario [h] = lar/2, com/2
+        if h<10:
+            lar +=160
     if h> 10 and h <= 20:
-        com = 10
+        com = 220
         dicionario [h] = lar/2, com/2
-        if h < 20:
-            lar -= 10
+        if h<20:
+            lar -= 160
     if h > 20 and h <= 30:
-        com = 15
+        com = 390
         dicionario [h] = lar/2, com/2
-        lar += 10
+        lar += 160
 print (dicionario)
 def tab(jogadores):
     botao_bastao = None
@@ -164,22 +166,40 @@ def tab(jogadores):
     
     white_piece = tk.PhotoImage(file = "white_piece.png")
     black_piece = tk.PhotoImage(file = "black_piece.png")
+    def move_button(button, new_position):
+        """Move o botão para uma nova posição."""
+        button.grid(row=new_position // 10, column=new_position % 10)
 
 
-    celu = []
+    lambda_functions = []
+    k=1
     for row in range(1):
         row_celub = []
         row_celup = []
         for col in range(10):
-            celu = tk.Button(board, text = "", width = 20, height = 20, command=verifica)
+            # Primeiro criamos o botão sem especificar a função command
+            celu = tk.Button(board, text = "", width = 20, height = 20)
+            x_elemento = dicionario[k][0]
+            y_elemento = dicionario[k][1]
+            celu.place(x = x_elemento, y=y_elemento)
+        
+            button_positions[celu] = k  # Armazena a posição do botão no dicionário button_positions
+
             if (row + col) % 2 == 0:
                 celu.configure(image = white_piece)
-                celu.grid(row = row, column=col)
-                row_celub.append(cell)
+                row_celub.append(celu)
             else:
                 celu.configure(image = black_piece)
-                celu.grid(row = row, column=col)
-                row_celup.append(cell)
+                row_celup.append(celu)
+            
+            # Cria a função lambda e adiciona-a à lista lambda_functions
+            lambda_functions.append((celu, lambda button=celu, new_position=k+4: move_button(button, new_position)))
+            
+            k +=1
+
+    # Agora atribuímos as funções lambda aos botões
+    for button, func in lambda_functions:
+        button.configure(command=func)
 
             
 
