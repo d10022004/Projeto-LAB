@@ -65,11 +65,6 @@ def regras():
     elif peao == 30 and ladobranco >= 1:
         print("Peão esta fora de jogo\n")  # 1 ponto para o jogador
 
-
-    
-    print(peao)
-    print("sairam", ladobranco, "bastoes com lado branco")
-    print("sairam", ladomadeira, "bastoes com lado de madeira")
     if ladobranco == 0:
         return ladobranco, ladomadeira, 5
     else:
