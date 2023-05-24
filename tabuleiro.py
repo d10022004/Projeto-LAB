@@ -11,6 +11,7 @@ import pygame
 button_positions = {}
 matriz = []
 h=1
+###############define coordenadas celulas ######################################
 dicionario = {}
 lar=55
 com=60
@@ -28,7 +29,8 @@ for h in range (1, 31):
         com = 390
         dicionario [h] = lar/2, com/2
         lar += 160
-print (dicionario)
+##################################################################################
+
 def tab(jogadores):
     botao_bastao = None
     janela_pausa = None
