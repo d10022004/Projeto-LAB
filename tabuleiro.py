@@ -162,8 +162,8 @@ def tab(jogadores):
 
 
 
-    tabuleiro = tk.Frame(window, bg = 'White')
-    tabuleiro.pack(fill=tk.BOTH, expand = True)
+    #tabuleiro = tk.Frame(window, bg = 'White')
+    #tabuleiro.pack(fill=tk.BOTH, expand = True)
    
     
     white_piece = tk.PhotoImage(file = "white_piece.png")
@@ -212,10 +212,10 @@ def tab(jogadores):
     jogadores_e_bastoes.pack()
     
     jogador1_label = tk.Label(jogadores_e_bastoes, text = jogadores['nome1'])
-    jogador1_label.pack(side = tk.LEFT)
+    jogador1_label.pack(side = tk.LEFT, padx = (10, 290))
     
     jogador2_label = tk.Label(jogadores_e_bastoes, text = jogadores['nome2'])
-    jogador2_label.pack(side = tk.RIGHT)
+    jogador2_label.pack(side = tk.RIGHT, padx = (290, 10))
     
     counter_frame = tk.Frame(window)
     counter_frame.pack()
