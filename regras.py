@@ -73,4 +73,5 @@ def regras():
 
     return ladobranco, ladomadeira, ladobranco
     
-regras ()
+
+
