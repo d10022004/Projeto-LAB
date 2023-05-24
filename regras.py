@@ -5,8 +5,9 @@ bastão = 0
 ladobranco = 0
 ladomadeira = 0
 peao = 0
-
+resultado=0
 def regras():
+    global resultado
     bastão = 0
     ladobranco = 0
     ladomadeira = 0
@@ -66,8 +67,15 @@ def regras():
         print("Peão esta fora de jogo\n")  # 1 ponto para o jogador
 
     if ladobranco == 0:
-        return ladobranco, ladomadeira, 5
+        resultado =5
+        return ladobranco, ladomadeira, resultado
     else:
-        return ladobranco, ladomadeira, ladobranco
-    
-regras()
+        resultado = ladobranco
+        return ladobranco, ladomadeira, resultado
+
+
+def resultado_bastao():
+    global resultado
+    return resultado
+       
+print (resultado)
