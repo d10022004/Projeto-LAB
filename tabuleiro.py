@@ -36,21 +36,10 @@ def tab(jogadores):
     janela_pausa = None
     lancamento = 0
     
-    def hist_poicoes(row, col):
-        print("Posicao celula clicada:", row, col)
-
     def verifica(): 
         global resultado
         if resultado == 0:
             print ("OLA")    
-    
-    def rodar_batoes():
-        bastoes = [random.choice(["Branco", "Preto"]) for _ in range(4)]
-    
-        contador_branco = bastoes.count("Branco")
-        contador_preto = bastoes.count("Preto")   
-        label_branco.config(text=f"Branco: {contador_branco}")
-        label_preto.config(text=f"Preto: {contador_preto}")
     
     def aumentar_tamanho_fonte():
         jogador1_label.config(font = ("Arial", 16))
@@ -76,9 +65,6 @@ def tab(jogadores):
     def sair_jogo():
         print("Jogo encerrado.")
         window.destroy()
-
-    def atalho_menu_pausa():
-        abrir_menu_pausa()
     
     window = tk.Tk()
     window.geometry("800x400")
@@ -86,11 +72,13 @@ def tab(jogadores):
     
     board = tk.Frame(window)
     board.pack()
-    def jogar ():
+    
+    
+    def jogar():
         botao_com.destroy()
         def ola():
             botao_lan.destroy()
-            bastao_preto, bastao_branco, resultado  = re.regras()
+            bastao_branco, bastao_preto, resultado  = re.regras()
             label_branco.config(text=f"Branco: {bastao_branco}") 
             label_preto.config(text=f"Preto: {bastao_preto}") 
             print (bastao_preto, bastao_branco, resultado)
@@ -100,7 +88,7 @@ def tab(jogadores):
             for p in range(2):
                 if p==0:   
                     botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = ola)
-                    botao_lan.config(font = ("Arial", 16))
+                    botao_lan.config(font = ("Arial", 14))
                     botao_lan.pack()
                 em_jogo = False
         
@@ -110,6 +98,7 @@ def tab(jogadores):
         
     cells = []
     cell_number = 1
+    
     ###################celulas especiais#####################################
     image1 = tk.PhotoImage(file = "senet.png")
     image2 = tk.PhotoImage(file = "senet1.png")
@@ -117,7 +106,8 @@ def tab(jogadores):
     image4 = tk.PhotoImage(file = "senet3.png")
     image5 = tk.PhotoImage(file = "senet4.png")
     image6 = tk.PhotoImage(file = "senet5.png")
-    ########################################################################3
+    #########################################################################
+    ####################CRIAR CELULAS########################################
     for row in range(3):
         row_cells = []
         for col in range(10):
@@ -158,18 +148,11 @@ def tab(jogadores):
             if cell_number == 30:
                 cell.configure(image = image6, width=75, height=80)
             cells.append(cell_number)
-        print (cells)
-
-
-
-    #tabuleiro = tk.Frame(window, bg = 'White')
-    #tabuleiro.pack(fill=tk.BOTH, expand = True)
-   
+##########################################################################
     
     white_piece = tk.PhotoImage(file = "white_piece.png")
     black_piece = tk.PhotoImage(file = "black_piece.png")
     def move_button(button, new_position):
-        """Move o botão para uma nova posição."""
         button.grid(row=new_position // 10, column=new_position % 10)
 
 
@@ -195,7 +178,7 @@ def tab(jogadores):
                 row_celup.append(celu)
             
             # Cria a função lambda e adiciona-a à lista lambda_functions
-            lambda_functions.append((celu, lambda button=celu, new_position=k+4: move_button(button, new_position)))
+            lambda_functions.append((celu, lambda button=celu, new_position=k+2: move_button(button, new_position)))
             
             k +=1
 
@@ -236,3 +219,5 @@ def tab(jogadores):
 
     aumentar_tamanho_fonte()
     window.mainloop()
+
+tab({'nome1' : "DAVID", 'nome2' : "Fidalgo"})
