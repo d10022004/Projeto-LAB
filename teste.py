@@ -1,8 +1,11 @@
 import tkinter as tk
-
+i=25
 def mover_botao():
+    global i
+    ola = 1
+    i = i+10
     # Move o botão para a coordenada (50, 50)
-    botao.place(x=50, y=50)
+    botao.place(x=ola*i, y=ola*i)
 
 # Cria a janela principal
 window = tk.Tk()
