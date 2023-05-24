@@ -236,4 +236,3 @@ def tab(jogadores):
 
     aumentar_tamanho_fonte()
     window.mainloop()
-tab ({'nome1': 'dsgfdaf', 'nome2': 'BOT'})
