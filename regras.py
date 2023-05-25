@@ -5,8 +5,9 @@ bastão = 0
 ladobranco = 0
 ladomadeira = 0
 peao = 0
-
+resultado=0
 def regras():
+    global resultado
     bastão = 0
     ladobranco = 0
     ladomadeira = 0
@@ -67,12 +68,16 @@ def regras():
     elif peao == 30 and ladobranco >= 1:
         print("Peão esta fora de jogo\n")  # 1 ponto para o jogador
 
+    if ladobranco == 0:
+        resultado =5
+        return ladobranco, ladomadeira, resultado
+    else:
+        resultado = ladobranco
+        return ladobranco, ladomadeira, resultado
 
-    
-    print(peao)
-    print("sairam", ladobranco, "bastoes com lado branco")
-    print("sairam", ladomadeira, "bastoes com lado de madeira")
 
-    return ladobranco, ladomadeira, ladobranco
-    
-regras ()
+def resultado_bastao():
+    global resultado
+    return resultado
+       
+print (resultado)

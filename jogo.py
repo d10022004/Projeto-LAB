@@ -1,5 +1,7 @@
 import pygame
 import tkinter as tk
+import random
+random.seed
 estado_jogo = True
 jogadores = []
 jogadoresd = {}
@@ -38,6 +40,7 @@ def menu():
                     jogadoresd['nome2'] = entrada.get()
                     jogadores.append(jogadoresd)
                     janela_nome2.destroy()
+                    
                     global estado_jogo
                     estado_jogo = False
                     
@@ -147,5 +150,11 @@ def menu():
             criar_botao("SAIR", CINZA, VERDE, (250, 360), 220, 50, sair)
         
         pygame.display.update()
-
-    return jogadoresd
+    a=random.randint(0, 1)
+    if a==0:
+        return jogadoresd
+    if a==1:
+        jogadoresd['nome1'], jogadoresd['nome2'] = jogadoresd['nome2'], jogadoresd['nome1']
+        return jogadoresd
+    
+    
