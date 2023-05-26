@@ -81,3 +81,4 @@ def resultado_bastao():
     return resultado
        
 print (resultado)
+regras()
