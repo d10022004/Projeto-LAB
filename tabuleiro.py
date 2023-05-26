@@ -67,7 +67,7 @@ def tab(jogadores):
     def sair_jogo():
         print("Jogo encerrado.")
         window.destroy()
-    
+
     window = tk.Tk()
     window.geometry("800x400")
     window.title("Tabuleiro")
@@ -227,6 +227,7 @@ def tab(jogadores):
     
     botao_com = tk.Button(jogadores_e_bastoes, text = "JOGAR?", command = jogar)
     botao_com.pack()
+
 
     pausa_botao = tk.Button(window, text = "Pausa", command = abrir_menu_pausa)
     pausa_botao.pack(pady=10)
