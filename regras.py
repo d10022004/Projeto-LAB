@@ -74,11 +74,4 @@ def regras():
     else:
         resultado = ladobranco
         return ladobranco, ladomadeira, resultado
-
-
-def resultado_bastao():
-    global resultado
-    return resultado
        
-print (resultado)
-regras()
