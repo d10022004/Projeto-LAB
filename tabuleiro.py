@@ -74,6 +74,12 @@ def tab(jogadores):
     
     board = tk.Frame(window)
     board.pack()
+
+    #contador de peças brancas e pretas que sairam
+    pecas_out_branco = 0
+    pecas_out_preto = 0
+
+
     
     
     def jogar():
@@ -154,24 +160,23 @@ def tab(jogadores):
     
     white_piece = tk.PhotoImage(file = "white_piece.png")
     black_piece = tk.PhotoImage(file = "black_piece.png")
+
+    
     def move_button(button):
-        if button_clickable[button]:  
-        # Obter a posição atual do botão
+        if button_clickable[button]:
             current_position = button_positions[button]
-        # Calcular a nova posição
             new_position = current_position + re.resultado_bastao()
-        
-        # Atualizar a posição do botão no dicionário button_positions
             button_positions[button] = new_position
-        
-        # Mover o botão para a nova posição
-            button.place(x = dicionario[new_position][0], y = dicionario[new_position][1])
-        
-        # Desativar o botão se alcançar a última posição
+            button.place(x=dicionario[new_position][0], y=dicionario[new_position][1])
+
             if new_position >= 30:
                 button_clickable[button] = False
-
-
+                if button["image"] == white_piece:
+                    pecas_out_branco += 1
+                    label_branco.config(text=f"Branco: {pecas_out_branco}")
+                elif button["image"] == black_piece:
+                    pecas_out_preto += 1
+                    label_preto.config(text=f"Preto: {pecas_out_preto}")
 
 
     global resultado
@@ -210,10 +215,10 @@ def tab(jogadores):
     jogadores_e_bastoes = tk.Frame(window)
     jogadores_e_bastoes.pack()
     
-    jogador1_label = tk.Label(jogadores_e_bastoes, text = jogadores['nome1'])
+    jogador1_label = tk.Label(jogadores_e_bastoes, text=f"{jogadores['nome1']} (Pontuação: {pecas_out_branco})")
     jogador1_label.pack(side = tk.LEFT, padx = (10, 290))
     
-    jogador2_label = tk.Label(jogadores_e_bastoes, text = jogadores['nome2'])
+    jogador2_label = tk.Label(jogadores_e_bastoes, text=f"{jogadores['nome2']} (Pontuação: {pecas_out_preto})")
     jogador2_label.pack(side = tk.RIGHT, padx = (290, 10))
     
     counter_frame = tk.Frame(window)
