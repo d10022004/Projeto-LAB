@@ -90,7 +90,7 @@ def tab(jogadores):
             for p in range(2):
                 if p==0:   
                     botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = ola)
-                    botao_lan.config(font = ("Arial", 12))
+                    botao_lan.config(font = ("Arial", 14))
                     botao_lan.pack()
                 em_jogo = False
         
