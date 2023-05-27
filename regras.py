@@ -6,6 +6,7 @@ ladobranco = 0
 ladomadeira = 0
 peao = 0
 resultado=0
+resultado_bastao = 0
 def regras():
     global resultado
     bastão = 0
