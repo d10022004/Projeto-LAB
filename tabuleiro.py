@@ -157,6 +157,7 @@ def tab(jogadores):
 ##########################################################################
 ##############
 # VER APARTIR DAQUI !!!! ###############
+
         
     def jogada():
         global botao_lan
@@ -167,7 +168,7 @@ def tab(jogadores):
         bastao_branco, bastao_preto, resultado  = re.regras()
         label_branco.config(text=f"Branco: {bastao_branco}") 
         label_preto.config(text=f"Preto: {bastao_preto}") 
-        return resultado
+
     
     
     def jogar():
@@ -202,7 +203,6 @@ def tab(jogadores):
 
         if button_clickable[button]:
             current_position = button_positions[button]
-            resultado = jogada()
             new_position = current_position + resultado
             button_positions[button] = new_position
             button.place(x=dicionario[new_position][0], y=dicionario[new_position][1])
@@ -223,6 +223,9 @@ def tab(jogadores):
                 current_player = jogador1
 
             resultado = 0
+            botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = jogada)
+            botao_lan.config(font = ("Arial", 14))
+            botao_lan.pack()
 
 
 
