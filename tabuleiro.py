@@ -1,7 +1,6 @@
 import os
 import tkinter as tk
 import random
-import keyboard #IMPORT DE KEYBOARD PARA O MACRO
 import regras as re
 import pygame
 
@@ -169,18 +168,19 @@ def tab(jogadores):
                 cell_number = aux + i
                 i += 1
             if cell_number == 15:
-                cell.configure(image = image1, width=75, height=80) 
+                cell.configure(image=image2, width=75, height=80)
             if cell_number == 26:
-                cell.configure(image = image2, width=75, height=80)
+                cell.configure(image=image3, width=75, height=80)
             if cell_number == 27:
-                cell.configure(image = image3, width=75, height=80)
+                cell.configure(image=image4, width=75, height=80)
             if cell_number == 28:
-                cell.configure(image = image4, width=75, height=80)
+                cell.configure(image=image1, width=75, height=80)
             if cell_number == 29:
-                cell.configure(image = image5, width=75, height=80)
+                cell.configure(image=image5, width=75, height=80)
             if cell_number == 30:
-                cell.configure(image = image6, width=75, height=80)
+                cell.configure(image=image6, width=75, height=80)
             cells.append(cell_number)
+
 ##########################################################################
     
     white_piece = tk.PhotoImage(file = "white_piece.png")
