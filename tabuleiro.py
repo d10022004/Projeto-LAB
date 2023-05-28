@@ -155,7 +155,8 @@ def tab(jogadores):
             cells.append(cell_number)
 
 ##########################################################################
-    
+##############
+# VER APARTIR DAQUI !!!! ###############
         
     def jogada():
         global botao_lan
