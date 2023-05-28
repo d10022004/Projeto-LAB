@@ -61,6 +61,17 @@ def tab(jogadores):
     resultado = 0  
     janela_pausa = None
     verifica = -1
+    tabuleiro_posicoes = {}
+    
+    for pos in range (1, 31):
+        if pos >=1 and pos <=10:
+            if pos %2 == 0:
+                tabuleiro_posicoes[pos] = 2
+            else :
+                tabuleiro_posicoes[pos] = 1
+        else:
+            tabuleiro_posicoes [pos] =0
+    print (tabuleiro_posicoes)
     
     def aumentar_tamanho_fonte():
         jogador1_label.config(font = ("Arial", 16))
