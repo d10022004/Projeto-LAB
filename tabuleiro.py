@@ -57,6 +57,7 @@ def move_piece(button):
 
 def tab(jogadores):
     global resultado  
+    global botao_lan
     resultado = 0  
     janela_pausa = None
     verifica = -1
@@ -164,7 +165,7 @@ def tab(jogadores):
         global resultado
         global verifica
         verifica = 0
-        botao_lan.destroy()
+        botao_lan.config(state="disabled")
         bastao_branco, bastao_preto, resultado  = re.regras()
         label_branco.config(text=f"Branco: {bastao_branco}") 
         label_preto.config(text=f"Preto: {bastao_preto}") 
@@ -173,16 +174,9 @@ def tab(jogadores):
     
     def jogar():
         botao_com.destroy()
-        em_jogo = True
-        p=0
-        while em_jogo == True:
-            for p in range(2):
-                if p==0:   
-                    global botao_lan
-                    botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = jogada)
-                    botao_lan.config(font = ("Arial", 14))
-                    botao_lan.pack()
-                em_jogo = False 
+        global botao_lan
+        botao_lan.config(state="normal")
+
     
     brancacorpeca = tk.PhotoImage(file = "white_piece.png")
     pretacorpeca = tk.PhotoImage(file = "black_piece.png")
@@ -223,9 +217,8 @@ def tab(jogadores):
                 current_player = jogador1
 
             resultado = 0
-            botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = jogada)
-            botao_lan.config(font = ("Arial", 14))
-            botao_lan.pack()
+            if botao_lan:
+                botao_lan.config(state="normal")
 
 
 
@@ -269,7 +262,9 @@ def tab(jogadores):
 ###########################TELA###################################################
     jogadores_e_bastoes = tk.Frame(window)
     jogadores_e_bastoes.pack()
-    
+    botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = jogada, state="disabled")
+    botao_lan.config(font = ("Arial", 14))
+    botao_lan.pack()
     jogador1_label = tk.Label(jogadores_e_bastoes, text=f"{jogadores['nome1']} (Pontuação: {pecas_out_branco})")
     jogador1_label.pack(side = tk.LEFT, padx = (10, 290))
     
