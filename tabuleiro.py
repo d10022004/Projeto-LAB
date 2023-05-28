@@ -185,27 +185,46 @@ def tab(jogadores):
     
     brancacorpeca = tk.PhotoImage(file = "white_piece.png")
     pretacorpeca = tk.PhotoImage(file = "black_piece.png")
+    global current_player
+    current_player = jogador1
 
-    
     def move_button(button):
         global resultado
+        global current_player
+
+        if resultado == 0:  # o botão "RODAR" ainda não foi pressionado
+            print("Por favor, pressione o botão 'RODAR' antes de mover uma peça.")
+            return
+        
+        if (button["image"] == str(brancacorpeca) and current_player != jogador1) or (button["image"] == str(pretacorpeca) and current_player != jogador2):
+            print(f"Não é a vez do {current_player}")
+            return
+
         if button_clickable[button]:
             current_position = button_positions[button]
             resultado = jogada()
             new_position = current_position + resultado
             button_positions[button] = new_position
             button.place(x=dicionario[new_position][0], y=dicionario[new_position][1])
-            
 
             if new_position >= 30:
                 button_clickable[button] = False
-                if button["image"] == brancacorpeca:
+                if button["image"] == str(brancacorpeca):
                     pecas_out_branco += 1
                     label_branco.config(text=f"Branco: {pecas_out_branco}")
-                elif button["image"] == pretacorpeca:
+                elif button["image"] == str(pretacorpeca):
                     pecas_out_preto += 1
                     label_preto.config(text=f"Preto: {pecas_out_preto}")
-            resultado =0
+
+        # Mudar o jogador atual depois de uma jogada válida
+            if current_player == jogador1:
+                current_player = jogador2
+            else:
+                current_player = jogador1
+
+            resultado = 0
+
+
 
     button_clickable = {}
     lambda_functions = []
