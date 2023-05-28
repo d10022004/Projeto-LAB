@@ -4,7 +4,7 @@ import random
 import regras as re
 import pygame
 
-resultado = 0
+
 #definir coordenadas para celulas num tabuleiro
 button_positions = {}
 matriz = []
@@ -36,8 +36,8 @@ class Piece:
 jogador1 = "Jogador1"
 jogador2 = "Jogador2"
 
-white_pieces = [Piece(player=jogador1) for _ in range(10)]
-black_pieces = [Piece(player=jogador2) for _ in range(10)]
+white_pieces = [Piece(player=jogador1) for _ in range(5)]
+black_pieces = [Piece(player=jogador2) for _ in range(5)]
                 
 def move_piece(button):
     global white_pieces, black_pieces
@@ -56,15 +56,10 @@ def move_piece(button):
 
 
 def tab(jogadores):
-    global resultado
-    botao_bastao = None
+    global resultado  
+    resultado = 0  
     janela_pausa = None
-    lancamento = 0
-    
-    def verifica(): 
-        global resultado
-        if resultado == 0:
-            print ("OLA")    
+    verifica = -1
     
     def aumentar_tamanho_fonte():
         jogador1_label.config(font = ("Arial", 16))
@@ -104,34 +99,12 @@ def tab(jogadores):
 
     botao_lan = None
 
-    def jogada():
-        global botao_lan
-        botao_lan.destroy()
-        bastao_branco, bastao_preto, resultado  = re.regras()
-        label_branco.config(text=f"Branco: {bastao_branco}") 
-        label_preto.config(text=f"Preto: {bastao_preto}") 
-        return resultado
+ 
 
-    def jogar():
-        botao_com.destroy()
-        em_jogo = True
-        p=0
-        while em_jogo == True:
-            for p in range(2):
-                if p==0:   
-                    global botao_lan
-                    botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = jogada)
-                    botao_lan.config(font = ("Arial", 14))
-                    botao_lan.pack()
-                em_jogo = False  
-
-        
-        
-        
-    cells = []
-    cell_number = 1
     
     ###################celulas especiais#####################################
+    cells = []
+    cell_number = 1
     image1 = tk.PhotoImage(file = "senet.png")
     image2 = tk.PhotoImage(file = "senet1.png")
     image3 = tk.PhotoImage(file = "senet2.png")
@@ -183,11 +156,38 @@ def tab(jogadores):
 
 ##########################################################################
     
-    white_piece = tk.PhotoImage(file = "white_piece.png")
-    black_piece = tk.PhotoImage(file = "black_piece.png")
+        
+    def jogada():
+        global botao_lan
+        global resultado
+        global verifica
+        verifica = 0
+        botao_lan.destroy()
+        bastao_branco, bastao_preto, resultado  = re.regras()
+        label_branco.config(text=f"Branco: {bastao_branco}") 
+        label_preto.config(text=f"Preto: {bastao_preto}") 
+        return resultado
+    
+    
+    def jogar():
+        botao_com.destroy()
+        em_jogo = True
+        p=0
+        while em_jogo == True:
+            for p in range(2):
+                if p==0:   
+                    global botao_lan
+                    botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = jogada)
+                    botao_lan.config(font = ("Arial", 14))
+                    botao_lan.pack()
+                em_jogo = False 
+    
+    brancacorpeca = tk.PhotoImage(file = "white_piece.png")
+    pretacorpeca = tk.PhotoImage(file = "black_piece.png")
 
     
     def move_button(button):
+        global resultado
         if button_clickable[button]:
             current_position = button_positions[button]
             resultado = jogada()
@@ -198,20 +198,21 @@ def tab(jogadores):
 
             if new_position >= 30:
                 button_clickable[button] = False
-                if button["image"] == white_piece:
+                if button["image"] == brancacorpeca:
                     pecas_out_branco += 1
                     label_branco.config(text=f"Branco: {pecas_out_branco}")
-                elif button["image"] == black_piece:
+                elif button["image"] == pretacorpeca:
                     pecas_out_preto += 1
                     label_preto.config(text=f"Preto: {pecas_out_preto}")
             resultado =0
 
-    global resultado
     button_clickable = {}
     lambda_functions = []
     k=1
     lambda_functions = []
     k = 1
+    a=0
+    b=0
     for row in range(1):
         for col in range(10):
             celu = tk.Button(board, text = "", width = 20, height = 20)
@@ -223,9 +224,13 @@ def tab(jogadores):
             button_clickable[celu] = True
 
             if (row + col) % 2 == 0:
-                celu.configure(image = white_piece)
+                celu.configure(image = brancacorpeca)
+                white_pieces[a]=celu
+                a +=1
             else:
-                celu.configure(image = black_piece)
+                celu.configure(image = pretacorpeca)
+                black_pieces[b]=celu
+                b+=1
             
         # Definir a função lambda
             lambda_functions.append((celu, lambda button=celu: move_button(button)))
