@@ -1,13 +1,10 @@
-#NAO APARECE NADA DO FICHEIRO DAS REGRAS
-
 import os
 import tkinter as tk
 import random
-import keyboard #IMPORT DE KEYBOARD PARA O MACRO
 import regras as re
 import pygame
 
-resultado = 0
+
 #definir coordenadas para celulas num tabuleiro
 button_positions = {}
 matriz = []
@@ -32,16 +29,37 @@ for h in range (1, 31):
         lar += 160
 ##################################################################################
 
+class Piece:
+    def __init__(self, player):
+        self.player = player
+
+jogador1 = "Jogador1"
+jogador2 = "Jogador2"
+
+white_pieces = [Piece(player=jogador1) for _ in range(5)]
+black_pieces = [Piece(player=jogador2) for _ in range(5)]
+                
+def move_piece(button):
+    global white_pieces, black_pieces
+
+    for piece in white_pieces:
+        if piece.player == jogador1 and button["image"] == white_pieces:
+            print("Jogador 1 moved a white piece")
+            return
+
+    for piece in black_pieces:
+        if piece.player == jogador2 and button["image"] == black_pieces:
+            print("Jogador 2 moved a black piece")
+            return
+
+    print("Unauthorized player attempted to move a piece")
+
+
 def tab(jogadores):
-    global resultado
-    botao_bastao = None
+    global resultado  
+    resultado = 0  
     janela_pausa = None
-    lancamento = 0
-    
-    def verifica(): 
-        global resultado
-        if resultado == 0:
-            print ("OLA")    
+    verifica = -1
     
     def aumentar_tamanho_fonte():
         jogador1_label.config(font = ("Arial", 16))
@@ -79,35 +97,14 @@ def tab(jogadores):
     pecas_out_branco = 0
     pecas_out_preto = 0
 
+    botao_lan = None
+
+ 
 
     
-    
-    def jogar():
-        botao_com.destroy()
-        def ola():
-            botao_lan.destroy()
-            bastao_branco, bastao_preto, resultado  = re.regras()
-            label_branco.config(text=f"Branco: {bastao_branco}") 
-            label_preto.config(text=f"Preto: {bastao_preto}") 
-            print (bastao_preto, bastao_branco, resultado)
-        em_jogo = True
-        p=0
-        while em_jogo == True:
-            for p in range(2):
-                if p==0:   
-                    botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = ola)
-                    botao_lan.config(font = ("Arial", 14))
-                    botao_lan.pack()
-                em_jogo = False
-        
-        
-        
-        
-        
+    ###################celulas especiais#####################################
     cells = []
     cell_number = 1
-    
-    ###################celulas especiais#####################################
     image1 = tk.PhotoImage(file = "senet.png")
     image2 = tk.PhotoImage(file = "senet1.png")
     image3 = tk.PhotoImage(file = "senet2.png")
@@ -144,47 +141,79 @@ def tab(jogadores):
                 cell_number = aux + i
                 i += 1
             if cell_number == 15:
-                cell.configure(image = image1, width=75, height=80) 
+                cell.configure(image=image2, width=75, height=80)
             if cell_number == 26:
-                cell.configure(image = image2, width=75, height=80)
+                cell.configure(image=image3, width=75, height=80)
             if cell_number == 27:
-                cell.configure(image = image3, width=75, height=80)
+                cell.configure(image=image4, width=75, height=80)
             if cell_number == 28:
-                cell.configure(image = image4, width=75, height=80)
+                cell.configure(image=image1, width=75, height=80)
             if cell_number == 29:
-                cell.configure(image = image5, width=75, height=80)
+                cell.configure(image=image5, width=75, height=80)
             if cell_number == 30:
-                cell.configure(image = image6, width=75, height=80)
+                cell.configure(image=image6, width=75, height=80)
             cells.append(cell_number)
+
 ##########################################################################
+##############
+# VER APARTIR DAQUI !!!! ###############
+        
+    def jogada():
+        global botao_lan
+        global resultado
+        global verifica
+        verifica = 0
+        botao_lan.destroy()
+        bastao_branco, bastao_preto, resultado  = re.regras()
+        label_branco.config(text=f"Branco: {bastao_branco}") 
+        label_preto.config(text=f"Preto: {bastao_preto}") 
+        return resultado
     
-    white_piece = tk.PhotoImage(file = "white_piece.png")
-    black_piece = tk.PhotoImage(file = "black_piece.png")
+    
+    def jogar():
+        botao_com.destroy()
+        em_jogo = True
+        p=0
+        while em_jogo == True:
+            for p in range(2):
+                if p==0:   
+                    global botao_lan
+                    botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = jogada)
+                    botao_lan.config(font = ("Arial", 14))
+                    botao_lan.pack()
+                em_jogo = False 
+    
+    brancacorpeca = tk.PhotoImage(file = "white_piece.png")
+    pretacorpeca = tk.PhotoImage(file = "black_piece.png")
 
     
     def move_button(button):
+        global resultado
         if button_clickable[button]:
             current_position = button_positions[button]
-            new_position = current_position + re.resultado_bastao()
+            resultado = jogada()
+            new_position = current_position + resultado
             button_positions[button] = new_position
             button.place(x=dicionario[new_position][0], y=dicionario[new_position][1])
+            
 
             if new_position >= 30:
                 button_clickable[button] = False
-                if button["image"] == white_piece:
+                if button["image"] == brancacorpeca:
                     pecas_out_branco += 1
                     label_branco.config(text=f"Branco: {pecas_out_branco}")
-                elif button["image"] == black_piece:
+                elif button["image"] == pretacorpeca:
                     pecas_out_preto += 1
                     label_preto.config(text=f"Preto: {pecas_out_preto}")
+            resultado =0
 
-
-    global resultado
     button_clickable = {}
     lambda_functions = []
     k=1
     lambda_functions = []
     k = 1
+    a=0
+    b=0
     for row in range(1):
         for col in range(10):
             celu = tk.Button(board, text = "", width = 20, height = 20)
@@ -196,9 +225,13 @@ def tab(jogadores):
             button_clickable[celu] = True
 
             if (row + col) % 2 == 0:
-                celu.configure(image = white_piece)
+                celu.configure(image = brancacorpeca)
+                white_pieces[a]=celu
+                a +=1
             else:
-                celu.configure(image = black_piece)
+                celu.configure(image = pretacorpeca)
+                black_pieces[b]=celu
+                b+=1
             
         # Definir a função lambda
             lambda_functions.append((celu, lambda button=celu: move_button(button)))

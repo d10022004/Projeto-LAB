@@ -105,8 +105,6 @@ def menu():
         labelop1.pack()
         botao1 = tk.Button(janela_op, text = "   1 VS 1   ", command = intrnome)
         botao1.pack()
-        botao2 = tk.Button(janela_op, text = "  1 VS BOT  ", command = intrnomeind)
-        botao2.pack()
         janela_op.mainloop()
 
       #  return dadosjogadores
