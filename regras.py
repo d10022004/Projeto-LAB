@@ -53,25 +53,16 @@ def regras():
         print("Mova 4 quadrados e ganha uma jogada extra")
         peao += 4
 
-    if peao == 26 and ladobranco == 1:
-        peao += 5
-        print("Peão esta fora de jogo\n")  # 1 ponto para o jogador
-    elif peao == 27 and ladobranco == 4:
-        peao += 5
-        print("Peãoesta fora de jogo\n")  # 1 ponto para o jogador
-    elif peao == 27:
-         peao -= 12
-    elif peao == 28 and ladobranco == 3:
-        print("Peão esta fora de jogo\n")  # 1 ponto para o jogador
-    elif peao == 29 and ladobranco == 2:
-        print("Peão esta fora de jogo\n")  # 1 ponto para o jogador
-    elif peao == 30 and ladobranco >= 1:
-        print("Peão esta fora de jogo\n")  # 1 ponto para o jogador
-
     if ladobranco == 0:
         resultado =5
         return ladobranco, ladomadeira, resultado
     else:
         resultado = ladobranco
         return ladobranco, ladomadeira, resultado
+    
+
+       
+
+
+
        
