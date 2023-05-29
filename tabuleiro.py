@@ -71,7 +71,6 @@ def tab(jogadores):
                 tabuleiro_posicoes[pos] = 1
         else:
             tabuleiro_posicoes [pos] =0
-    print (tabuleiro_posicoes)
     
     def aumentar_tamanho_fonte():
         jogador1_label.config(font = ("Arial", 16))
@@ -104,7 +103,7 @@ def tab(jogadores):
     
     board = tk.Frame(window)
     board.pack()
-
+    global pecas_out_branco, pecas_out_preto
     #contador de peças brancas e pretas que sairam
     pecas_out_branco = 0
     pecas_out_preto = 0
@@ -197,6 +196,8 @@ def tab(jogadores):
     def move_button(button):
         global resultado
         global current_player
+        global pecas_out_preto
+        global pecas_out_branco
 
         if resultado == 0:  # o botão "RODAR" ainda não foi pressionado
             print("Por favor, pressione o botão 'RODAR' antes de mover uma peça.")
@@ -210,16 +211,21 @@ def tab(jogadores):
             current_position = button_positions[button]
             new_position = current_position + resultado
             button_positions[button] = new_position
-            button.place(x=dicionario[new_position][0], y=dicionario[new_position][1])
-
-            if new_position >= 30:
-                button_clickable[button] = False
+            if new_position == 31:
                 if button["image"] == str(brancacorpeca):
                     pecas_out_branco += 1
-                    label_branco.config(text=f"Branco: {pecas_out_branco}")
-                elif button["image"] == str(pretacorpeca):
+                    jogador1_label.config(text=f"{jogadores['nome1']} (Pontuação: {pecas_out_branco})")
+                else:
                     pecas_out_preto += 1
-                    label_preto.config(text=f"Preto: {pecas_out_preto}")
+                    jogador2_label.config(text=f"{jogadores['nome2']} (Pontuação: {pecas_out_preto})")
+                button.destroy()
+                return
+            elif new_position > 31:
+                return
+            else:
+                button.place(x=dicionario[new_position][0], y=dicionario[new_position][1])
+
+
 
         # Mudar o jogador atual depois de uma jogada válida
             if current_player == jogador1:
@@ -298,11 +304,8 @@ def tab(jogadores):
     pausa_botao = tk.Button(window, text = "Pausa", command = abrir_menu_pausa)
     pausa_botao.pack(pady=10)
     
-    #keyboard.add_hotkey('esc', atalho_menu_pausa)
-
     aumentar_tamanho_fonte()
     window.mainloop()
 ###############################################################################################
 
-
-tab({'nome1' : "DAVID", 'nome2' : "Fidalgo"})
+tab({"nome1": "David", "nome2": "Fidalgo"})
