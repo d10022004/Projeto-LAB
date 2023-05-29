@@ -220,9 +220,12 @@ def tab(jogadores):
             current_position = button_positions[button]
             new_position = current_position + resultado
             if new_position == 31:
+                tabuleiro_posicoes[current_position] =0
                 if current_player == jogador1:
                     pecas_out_branco += 1
                     jogador1_label.config(text=f"{jogadores['nome1']} (Pontuação: {pecas_out_branco})")
+                    
+                    
                     button.destroy()
                 elif current_player == jogador2:
                     pecas_out_preto += 1
