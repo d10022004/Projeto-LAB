@@ -62,8 +62,18 @@ def regras():
         return ladobranco, ladomadeira, resultado
     
 
-       
-
-
-
-       
+def verificapeca(dic_posicao, pecacor, posicaopeca, lancamento):
+    if pecacor == "Black":
+        if dic_posicao[posicaopeca+lancamento] == 1:
+            return 0
+        elif dic_posicao[posicaopeca+lancamento] == 2:
+            return 1
+        else:
+            return 0
+    if pecacor == "White":
+        if dic_posicao[posicaopeca+lancamento] == 1:
+            return 0
+        elif dic_posicao[posicaopeca+lancamento] == 2:
+            return 0
+        else:
+            return 1
