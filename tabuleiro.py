@@ -255,7 +255,34 @@ def tab(jogadores):
                         tabuleiro_posicoes[new_position] = 2
                 if verificacao == 2:
                     passo = 2
-                    re.verificapeca(tabuleiro_posicoes, current_player, current_position, resultado, passo)
+                    verifica2 = re.verificapeca(tabuleiro_posicoes, current_player, current_position, resultado, passo)
+                    if verifica2 == 2.1:
+                        for a in range (1, 11):
+                            if current_player == jogador1:
+                                if a%2 == 1:
+                                    if tabuleiro_posicoes[a] == 0:
+                                        button_positions[button] = a
+                                        button.place(x=dicionario[a][0], y=dicionario[a][1])
+                                        tabuleiro_posicoes[current_position] = 0
+                                        tabuleiro_posicoes[a] = 1
+                                        resultado =0
+                                        return
+                            if current_player == jogador2:
+                                if a%2 == 0:
+                                    if tabuleiro_posicoes[a] == 0:
+                                        button_positions[button] = a
+                                        button.place(x=dicionario[a][0], y=dicionario[a][1])
+                                        tabuleiro_posicoes[a] = 0
+                                        resultado=0
+                                        return
+                                        
+                    elif verifica2 == 2.2:
+                        button_positions[button] = 15
+                        button.place(x=dicionario[15][0], y=dicionario[15][1])
+                        if current_player == jogador1:
+                            tabuleiro_posicoes[15] = 1
+                        elif current_player == jogador2:
+                            tabuleiro_posicoes[15] = 2
                 resultado= 0
 
 
@@ -329,3 +356,5 @@ def tab(jogadores):
     aumentar_tamanho_fonte()
     window.mainloop()
 ###############################################################################################
+
+tab({"nome1":"David", "nome2": "igofaem"})
