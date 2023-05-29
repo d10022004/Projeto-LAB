@@ -60,7 +60,6 @@ def tab(jogadores):
     global botao_lan
     resultado = 0  
     janela_pausa = None
-    verifica = -1
     tabuleiro_posicoes = {}
     
     for pos in range (1, 31):
