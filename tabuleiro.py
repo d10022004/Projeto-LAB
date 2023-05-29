@@ -60,6 +60,7 @@ def tab(jogadores):
     global botao_lan
     resultado = 0  
     janela_pausa = None
+    global tabuleiro_posicoes
     tabuleiro_posicoes = {}
     
     for pos in range (1, 31):
@@ -201,11 +202,12 @@ def tab(jogadores):
         global current_player
         global pecas_out_preto
         global pecas_out_branco
+        global tabuleiro_posicoes
 
         if resultado == 0:  # o botão "RODAR" ainda não foi pressionado
             print("Por favor, pressione o botão 'RODAR' antes de mover uma peça.")
             return
-        
+
         if (button["image"] == str(brancacorpeca) and current_player != jogador1) or (button["image"] == str(pretacorpeca) and current_player != jogador2):
             print(f"Não é a vez do {current_player}")
             return
@@ -225,16 +227,24 @@ def tab(jogadores):
             elif new_position > 31:
                 return
             else:
-                button_positions[button] = new_position
-                button.place(x=dicionario[new_position][0], y=dicionario[new_position][1])
-
-
-
-        # Mudar o jogador atual depois de uma jogada válida
-
-
-            resultado = 0
-
+                passo = 1
+                verificacao = re.verificapeca(tabuleiro_posicoes, current_player, current_position, resultado, passo)
+                if verificacao == 0:
+                    button_positions[button] = new_position
+                    button.place(x=dicionario[new_position][0], y=dicionario[new_position][1])
+                if verificacao == -1:
+                    for other_button, other_button_position in button_positions.items():
+                        if other_button_position == new_position and other_button["image"] != button["image"]:
+                            button_positions[button] = new_position
+                            button_positions[other_button] = current_position
+                            button.place(x=dicionario[new_position][0], y=dicionario[new_position][1])
+                            other_button.place(x=dicionario[current_position][0], y=dicionario[current_position][1])
+                if verificacao == 1:
+                    print ("adeus")
+                if verificacao == 2:
+                    passo = 2
+                    re.verificapeca(tabuleiro_posicoes, current_player, current_position, resultado, passo)
+                resultado= 0
 
 
 
