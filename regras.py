@@ -65,16 +65,16 @@ def regras():
 def verificapeca(dic_posicao, play, posicaopeca, lancamento, passo):
     if passo ==1:
         if play == "Jogador1":
-            if dic_posicao[posicaopeca+lancamento] == 1:
+            if dic_posicao[posicaopeca+lancamento] == 2:
                 return -1
-            elif dic_posicao[posicaopeca+lancamento] == 2:
+            elif dic_posicao[posicaopeca+lancamento] == 1:
                 return 0
             elif dic_posicao[posicaopeca+lancamento] == 0:
                 return 1
         if play == "Jogador2":
-            if dic_posicao[posicaopeca+lancamento] == 1:
+            if dic_posicao[posicaopeca+lancamento] == 2:
                 return 0
-            elif dic_posicao[posicaopeca+lancamento] == 2:
+            elif dic_posicao[posicaopeca+lancamento] == 1:
                 return -1
             elif dic_posicao[posicaopeca+lancamento] == 0:
                 return 1
