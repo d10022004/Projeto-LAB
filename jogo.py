@@ -154,5 +154,3 @@ def menu():
     if a==1:
         jogadoresd['nome1'], jogadoresd['nome2'] = jogadoresd['nome2'], jogadoresd['nome1']
         return jogadoresd
-    
-    
