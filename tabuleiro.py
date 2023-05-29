@@ -44,19 +44,19 @@ def move_piece(button):
 
     for piece in white_pieces:
         if piece.player == jogador1 and button["image"] == white_pieces:
-            print("Jogador 1 moved a white piece")
+            print("Jogador 1 moveu uma peça branca.")
             return
 
     for piece in black_pieces:
         if piece.player == jogador2 and button["image"] == black_pieces:
-            print("Jogador 2 moved a black piece")
+            print("Jogador 2 moveu uma peça preta.")
             return
 
-    print("Unauthorized player attempted to move a piece")
+    print("Jogador não autorizado tentou mover a peça!")
 
 
 def tab(jogadores):
-    global resultado  
+    global resultado
     global botao_lan
     resultado = 0  
     janela_pausa = None
@@ -98,7 +98,7 @@ def tab(jogadores):
         window.destroy()
 
     window = tk.Tk()
-    window.geometry("800x400")
+    window.geometry("1280x400")
     window.title("Tabuleiro")
     
     board = tk.Frame(window)
@@ -123,6 +123,7 @@ def tab(jogadores):
     image5 = tk.PhotoImage(file = "senet4.png")
     image6 = tk.PhotoImage(file = "senet5.png")
     #########################################################################
+
     ####################CRIAR CELULAS########################################
     for row in range(3):
         row_cells = []
