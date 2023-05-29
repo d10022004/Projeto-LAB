@@ -181,8 +181,12 @@ def tab(jogadores):
         label_preto.config(text=f"Preto: {bastao_preto}") 
         if current_player == jogador1:
             current_player = jogador2
+            jogador1_label.config(text=f"{jogadores['nome1']} (Pontuação: {pecas_out_branco})")
+            jogador2_label.config(text=f"{jogadores['nome2']} (Pontuação: {pecas_out_preto}) ÉS TU!")
         else:
             current_player = jogador1
+            jogador1_label.config(text=f"{jogadores['nome1']} (Pontuação: {pecas_out_branco}) ÉS TU!")
+            jogador2_label.config(text=f"{jogadores['nome2']} (Pontuação: {pecas_out_preto})")
 
     
     
@@ -230,8 +234,7 @@ def tab(jogadores):
                 passo = 1
                 verificacao = re.verificapeca(tabuleiro_posicoes, current_player, current_position, resultado, passo)
                 if verificacao == 0:
-                    button_positions[button] = new_position
-                    button.place(x=dicionario[new_position][0], y=dicionario[new_position][1])
+                    return
                 if verificacao == -1:
                     for other_button, other_button_position in button_positions.items():
                         if other_button_position == new_position and other_button["image"] != button["image"]:
@@ -239,8 +242,17 @@ def tab(jogadores):
                             button_positions[other_button] = current_position
                             button.place(x=dicionario[new_position][0], y=dicionario[new_position][1])
                             other_button.place(x=dicionario[current_position][0], y=dicionario[current_position][1])
+                            tabuleiro_posicoes[current_position], tabuleiro_posicoes[new_position] = tabuleiro_posicoes[new_position], tabuleiro_posicoes[current_position]
+                            resultado= 0
+                            return
                 if verificacao == 1:
-                    print ("adeus")
+                    button_positions[button] = new_position
+                    button.place(x=dicionario[new_position][0], y=dicionario[new_position][1])
+                    tabuleiro_posicoes[current_position] = 0
+                    if current_player == jogador1:
+                        tabuleiro_posicoes[new_position] = 1
+                    elif current_player == jogador2:
+                        tabuleiro_posicoes[new_position] = 2
                 if verificacao == 2:
                     passo = 2
                     re.verificapeca(tabuleiro_posicoes, current_player, current_position, resultado, passo)
