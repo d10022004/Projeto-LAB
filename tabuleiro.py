@@ -329,5 +329,3 @@ def tab(jogadores):
     aumentar_tamanho_fonte()
     window.mainloop()
 ###############################################################################################
-
-tab({"nome1": "David", "nome2": "Fidalgo"})
