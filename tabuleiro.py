@@ -174,11 +174,15 @@ def tab(jogadores):
         global botao_lan
         global resultado
         global verifica
+        global current_player
         verifica = 0
-        botao_lan.config(state="disabled")
         bastao_branco, bastao_preto, resultado  = re.regras()
         label_branco.config(text=f"Branco: {bastao_branco}") 
         label_preto.config(text=f"Preto: {bastao_preto}") 
+        if current_player == jogador1:
+            current_player = jogador2
+        else:
+            current_player = jogador1
 
     
     
@@ -191,7 +195,7 @@ def tab(jogadores):
     brancacorpeca = tk.PhotoImage(file = "white_piece.png")
     pretacorpeca = tk.PhotoImage(file = "black_piece.png")
     global current_player
-    current_player = jogador1
+    current_player = jogador2
 
     def move_button(button):
         global resultado
@@ -210,32 +214,28 @@ def tab(jogadores):
         if button_clickable[button]:
             current_position = button_positions[button]
             new_position = current_position + resultado
-            button_positions[button] = new_position
             if new_position == 31:
-                if button["image"] == str(brancacorpeca):
+                if current_player == jogador1:
                     pecas_out_branco += 1
                     jogador1_label.config(text=f"{jogadores['nome1']} (Pontuação: {pecas_out_branco})")
-                else:
+                    button.destroy()
+                elif current_player == jogador2:
                     pecas_out_preto += 1
                     jogador2_label.config(text=f"{jogadores['nome2']} (Pontuação: {pecas_out_preto})")
-                button.destroy()
-                return
+                    button.destroy()
             elif new_position > 31:
                 return
             else:
+                button_positions[button] = new_position
                 button.place(x=dicionario[new_position][0], y=dicionario[new_position][1])
 
 
 
         # Mudar o jogador atual depois de uma jogada válida
-            if current_player == jogador1:
-                current_player = jogador2
-            else:
-                current_player = jogador1
+
 
             resultado = 0
-            if botao_lan:
-                botao_lan.config(state="normal")
+
 
 
 
@@ -268,7 +268,8 @@ def tab(jogadores):
         # Definir a função lambda
             lambda_functions.append((celu, lambda button=celu: move_button(button)))
             k += 1
-    print (button_positions)
+            
+            
     # Agora atribuímos as funções lambda aos botões
     for button, func in lambda_functions:
         button.configure(command=func)
