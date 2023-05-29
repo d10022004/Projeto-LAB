@@ -62,18 +62,26 @@ def regras():
         return ladobranco, ladomadeira, resultado
     
 
-def verificapeca(dic_posicao, pecacor, posicaopeca, lancamento):
-    if pecacor == "Black":
-        if dic_posicao[posicaopeca+lancamento] == 1:
-            return 0
-        elif dic_posicao[posicaopeca+lancamento] == 2:
-            return 1
-        else:
-            return 0
-    if pecacor == "White":
-        if dic_posicao[posicaopeca+lancamento] == 1:
-            return 0
-        elif dic_posicao[posicaopeca+lancamento] == 2:
-            return 0
-        else:
-            return 1
+def verificapeca(dic_posicao, play, posicaopeca, lancamento, passo):
+    if passo ==1:
+        if play == "Jogador1":
+            if dic_posicao[posicaopeca+lancamento] == 1:
+                return -1
+            elif dic_posicao[posicaopeca+lancamento] == 2:
+                return 0
+            elif dic_posicao[posicaopeca+lancamento] == 0:
+                return 1
+        if play == "Jogador2":
+            if dic_posicao[posicaopeca+lancamento] == 1:
+                return 0
+            elif dic_posicao[posicaopeca+lancamento] == 2:
+                return -1
+            elif dic_posicao[posicaopeca+lancamento] == 0:
+                return 1
+        if dic_posicao[posicaopeca+lancamento] == 26:
+            return 2
+    
+    
+    
+
+    
