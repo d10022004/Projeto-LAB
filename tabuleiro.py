@@ -294,8 +294,10 @@ def tab(jogadores):
                         button.place(x=dicionario[15][0], y=dicionario[15][1])
                         if current_player == jogador1:
                             tabuleiro_posicoes[15] = 1
+                            tabuleiro_posicoes[current_position] = 0
                         elif current_player == jogador2:
                             tabuleiro_posicoes[15] = 2
+                            tabuleiro_posicoes[current_position] = 0
                 resultado= 0
 
 
