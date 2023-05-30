@@ -58,6 +58,8 @@ def move_piece(button):
 def tab(jogadores):
     global resultado
     global botao_lan
+    global jogadaextra
+    jogadaextra =1
     resultado = 0  
     janela_pausa = None
     global tabuleiro_posicoes
@@ -176,18 +178,25 @@ def tab(jogadores):
         global resultado
         global verifica
         global current_player
+        global jogadaextra
         verifica = 0
         bastao_branco, bastao_preto, resultado  = re.regras()
         label_branco.config(text=f"Branco: {bastao_branco}") 
         label_preto.config(text=f"Preto: {bastao_preto}") 
-        if current_player == jogador1:
-            current_player = jogador2
-            jogador1_label.config(text=f"{jogadores['nome1']} (Pontuação: {pecas_out_branco})")
-            jogador2_label.config(text=f"{jogadores['nome2']} (Pontuação: {pecas_out_preto}) ÉS TU!")
+        if jogadaextra == 1:
+            if current_player == jogador1:
+                current_player = jogador2
+                jogador1_label.config(text=f"{jogadores['nome1']} (Pontuação: {pecas_out_branco})")
+                jogador2_label.config(text=f"{jogadores['nome2']} (Pontuação: {pecas_out_preto}) ÉS TU!")
+            else:
+                current_player = jogador1
+                jogador1_label.config(text=f"{jogadores['nome1']} (Pontuação: {pecas_out_branco}) ÉS TU!")
+                jogador2_label.config(text=f"{jogadores['nome2']} (Pontuação: {pecas_out_preto})")
+        if resultado == 1 or resultado == 4 or resultado == 5:
+            jogadaextra = 0
         else:
-            current_player = jogador1
-            jogador1_label.config(text=f"{jogadores['nome1']} (Pontuação: {pecas_out_branco}) ÉS TU!")
-            jogador2_label.config(text=f"{jogadores['nome2']} (Pontuação: {pecas_out_preto})")
+            jogadaextra = 1
+            
 
     
     
@@ -361,4 +370,3 @@ def tab(jogadores):
     window.mainloop()
 ###############################################################################################
 
-tab({"nome1":"David", "nome2": "igofaem"})
