@@ -196,13 +196,17 @@ def tab(jogadores):
     
     #JANELA QUE MOSTRA O JOGADOR VENCEDOR   
     def exibir_vencedor(nome):
+        def destroirjanelas():
+            window_vencedor.destroy()
+            window.destroy()
+
         window_vencedor = tk.Toplevel(window)
         window_vencedor.title("Vencedor")
 
         label_vencedor = tk.Label(window_vencedor, text=f"O jogador {nome} ganhou!")
         label_vencedor.pack(pady=50)
 
-        button_fechar = tk.Button(window_vencedor, text="Fechar", command=window_vencedor.destroy)
+        button_fechar = tk.Button(window_vencedor, text="Fechar", command=destroirjanelas)
         button_fechar.pack()
 
     def jogar():
