@@ -8,6 +8,8 @@ jogadoresd = {}
 
 def menu():
     global estado_jogo
+    global condicao
+    condicao = 0
     pygame.init()
     imagemfundo = pygame.image.load("imagemfundo.jpeg")
     compri = imagemfundo.get_width()
@@ -37,10 +39,11 @@ def menu():
         def intrnome():
             def segundoplay(entrada):
                 def fechar():
+                    global condicao
                     jogadoresd['nome2'] = entrada.get()
                     jogadores.append(jogadoresd)
                     janela_nome2.destroy()
-                    
+                    condicao = 1
                     global estado_jogo
                     estado_jogo = False
                     
@@ -149,8 +152,11 @@ def menu():
         
         pygame.display.update()
     a=random.randint(0, 1)
-    if a==0:
-        return jogadoresd
-    if a==1:
-        jogadoresd['nome1'], jogadoresd['nome2'] = jogadoresd['nome2'], jogadoresd['nome1']
-        return jogadoresd
+    if condicao == 1:
+        if a==0:
+            return jogadoresd, condicao
+        if a==1:
+            jogadoresd['nome1'], jogadoresd['nome2'] = jogadoresd['nome2'], jogadoresd['nome1']
+            return jogadoresd, condicao
+    else:
+        return 0, 0
