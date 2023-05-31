@@ -195,11 +195,11 @@ def tab(jogadores):
             jogadaextra = 1
     
     #JANELA QUE MOSTRA O JOGADOR VENCEDOR   
-    def exibir_vencedor(jogador):
+    def exibir_vencedor(nome):
         window_vencedor = tk.Toplevel(window)
         window_vencedor.title("Vencedor")
 
-        label_vencedor = tk.Label(window_vencedor, text=f"O jogador {jogador} ganhou!")
+        label_vencedor = tk.Label(window_vencedor, text=f"O jogador {nome} ganhou!")
         label_vencedor.pack(pady=50)
 
         button_fechar = tk.Button(window_vencedor, text="Fechar", command=window_vencedor.destroy)
@@ -239,13 +239,19 @@ def tab(jogadores):
                 if current_player == jogador1:
                     pecas_out_branco += 1
                     jogador1_label.config(text=f"{jogadores['nome1']} (Pontuação: {pecas_out_branco})")
-                    
-                    
                     button.destroy()
+
+                    if pecas_out_branco == 5:
+                        exibir_vencedor(jogadores['nome1'])
+
                 elif current_player == jogador2:
                     pecas_out_preto += 1
                     jogador2_label.config(text=f"{jogadores['nome2']} (Pontuação: {pecas_out_preto})")
                     button.destroy()
+
+                    if pecas_out_preto == 5:
+                        exibir_vencedor(jogadores['nome2'])
+
             elif new_position > 31:
                 return
             else:
@@ -341,13 +347,7 @@ def tab(jogadores):
     # Agora atribuímos as funções lambda aos botões
     for button, func in lambda_functions:
         button.configure(command=func)
-
-    #Verifica quem é o vencedor e exibe o nome do mesmo
-    if resultado == 1:
-        exibir_vencedor(jogador1)
-    elif resultado == 2:
-        exibir_vencedor(jogador2)
-  
+      
 ################################################TELA###################################################
     jogadores_e_bastoes = tk.Frame(window)
     jogadores_e_bastoes.pack()
