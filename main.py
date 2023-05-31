@@ -2,7 +2,7 @@ import jogo as menu
 import tabuleiro as tab
 
 while menu.estado_jogo == True:
-    play = menu.menu()
+    play, con = menu.menu()
 
-
-tab.tab(play)
+if con == 1:
+    tab.tab(play)
