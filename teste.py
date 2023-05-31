@@ -1,24 +1,36 @@
 import tkinter as tk
-i=25
-def mover_botao():
-    global i
-    ola = 1
-    i = i+10
-    # Move o botão para a coordenada (50, 50)
-    botao.place(x=ola*i, y=ola*i)
 
-# Cria a janela principal
+
+    
+
+def exibir_vencedor(nome):
+    def destroirjanelas():
+        window_vencedor.destroy()
+        window.destroy()
+    
+    window_vencedor = tk.Toplevel(window)
+    window_vencedor.title("Vencedor")
+
+    label_vencedor = tk.Label(window_vencedor, text=f"O jogador {nome} ganhou!")
+    label_vencedor.pack(pady=50)
+
+    button_fechar = tk.Button(window_vencedor, text="Fechar", command=destroirjanelas)
+    button_fechar.pack()
+    
+        
 window = tk.Tk()
-window.geometry("400x400")
-window.title("Mover Botão")
+window.title("Jogo")
 
-# Cria o botão inicial na coordenada (30, 20)
-botao = tk.Button(window, text="Botão")
-botao.place(x=30, y=20)
+# Aqui você pode adicionar outros elementos ou funcionalidades ao seu jogo...
 
-# Botão para mover o botão
-botao_mover = tk.Button(window, text="Mover Botão", command=mover_botao)
-botao_mover.pack(pady=10)
+# Exibindo o vencedor
+exibir_vencedor("Leonardo")
 
-# Inicia a aplicação
+# Iniciando o loop principal da janela
 window.mainloop()
+
+
+
+
+
+
