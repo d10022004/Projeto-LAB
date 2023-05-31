@@ -91,7 +91,7 @@ def tab(jogadores):
 
         sair_botao = tk.Button(janela_pausa, text = "Sair do Jogo", command = sair_jogo)
         sair_botao.pack(pady=15)
-
+    
     def guardar_jogo():
         print("Jogo salvo!")
 
@@ -111,9 +111,6 @@ def tab(jogadores):
     pecas_out_preto = 0
 
     botao_lan = None
-
- 
-
     
     ###################celulas especiais#####################################
     cells = []
@@ -196,10 +193,18 @@ def tab(jogadores):
             jogadaextra = 0
         else:
             jogadaextra = 1
-            
+    
+    #JANELA QUE MOSTRA O JOGADOR VENCEDOR   
+    def exibir_vencedor(jogador):
+        window_vencedor = tk.Toplevel(window)
+        window_vencedor.title("Vencedor")
 
-    
-    
+        label_vencedor = tk.Label(window_vencedor, text=f"O jogador {jogador} ganhou!")
+        label_vencedor.pack(pady=50)
+
+        button_fechar = tk.Button(window_vencedor, text="Fechar", command=window_vencedor.destroy)
+        button_fechar.pack()
+
     def jogar():
         botao_com.destroy()
         global botao_lan
@@ -337,10 +342,13 @@ def tab(jogadores):
     for button, func in lambda_functions:
         button.configure(command=func)
 
-            
-
-    
-###########################TELA###################################################
+    #Verifica quem é o vencedor e exibe o nome do mesmo
+    if resultado == 1:
+        exibir_vencedor(jogador1)
+    elif resultado == 2:
+        exibir_vencedor(jogador2)
+  
+################################################TELA###################################################
     jogadores_e_bastoes = tk.Frame(window)
     jogadores_e_bastoes.pack()
     botao_lan = tk.Button(jogadores_e_bastoes, text = "RODAR", command = jogada, state="disabled")
@@ -367,8 +375,7 @@ def tab(jogadores):
 
     pausa_botao = tk.Button(window, text = "Pausa", command = abrir_menu_pausa)
     pausa_botao.pack(pady=10)
-    
+
     aumentar_tamanho_fonte()
     window.mainloop()
 ###############################################################################################
-
