@@ -5,5 +5,4 @@ while menu.estado_jogo == True:
     play = menu.menu()
 
 
-
 tab.tab(play)
