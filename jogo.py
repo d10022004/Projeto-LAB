@@ -118,6 +118,7 @@ def menu():
     def regrasjogo():
         def fechajanela():
             janela_regras.destroy()
+            return ()
         janela_regras = tk.Tk()
         janela_regras.title ("Regras SENET")
         janela_regras.geometry ("1280x1024")
